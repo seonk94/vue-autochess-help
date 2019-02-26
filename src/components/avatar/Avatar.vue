@@ -15,7 +15,7 @@
 
         <v-btn
             slot="activator"
-
+            :color="unit.color"
             fab
         >
             <v-avatar
@@ -23,19 +23,18 @@
             :tile="false"
             :size="50"
             :color="unit.color"
-            @click="ClickAvatar(unit)"
             >
-                <img :src="unit.img" alt="avatar" width="100%" height="100%">
+                <img class="my-avatar-badge-img" :src="require('../../assets/logo.svg')" :alt="unit.name" width="90%" height="90%">
             </v-avatar>
             
         </v-btn>
 
         <v-list>
-            <v-list-tile>
-                <v-list-tile-title>down</v-list-tile-title>
+            <v-list-tile @click="ClickMove(unit)">
+                <v-list-tile-title>move</v-list-tile-title>
             </v-list-tile>
-            <v-list-tile>
-                <v-list-tile-title>delete</v-list-tile-title>
+            <v-list-tile @click="ClickSell(unit)">
+                <v-list-tile-title>sell</v-list-tile-title>
             </v-list-tile>
         </v-list>
     </v-menu>
@@ -44,9 +43,8 @@
     :tile="false"
     :size="50"
     :color="unit.color"
-    @click="ClickAvatar(unit)"
     >
-        <img :src="unit.img" alt="avatar" width="100%" height="100%">
+        <img class="my-avatar-img" :src="require('../../assets/logo.svg')" @click="ClickNoBadge(unit)" :alt="unit.name">
     </v-avatar>
 </template>
 
@@ -56,7 +54,9 @@
             isBadge: Boolean,
             isDropDown: Boolean,
             unit: {},
-            ClickAvatar: {}
+            ClickNoBadge: Function,
+            ClickMove: {},
+            ClickSell: {}
         }, 
         methods: {
 
@@ -67,5 +67,13 @@
 <style scoped>
     .my-avater {
         cursor: pointer;
+    }
+    .my-avatar-img {
+        width: 90%;
+        height: 90%
+    }
+    .my-avatar-badge-img {
+        width: 100%;
+        height: 100%;
     }
 </style>

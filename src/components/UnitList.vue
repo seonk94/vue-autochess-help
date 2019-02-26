@@ -1,7 +1,7 @@
 <template>
     <div class="text-xs-center">
         <span v-for="(unit, index) in units" :key="index">
-            <Avatar :unit="unit" :isDropDown="false" :isBadge="false" :ClickAvatar="avatarClick"/>
+            <Avatar :unit="unit" :isDropDown="false" :isBadge="false" :ClickNoBadge="avatarClick"/>
         </span>
     </div>
 </template>
@@ -20,8 +20,6 @@
         },
         methods: {
             avatarClick(unit) {
-                /* eslint-disable no-console */
-                console.log('unitlist',unit)
                 this.$store.commit('INSERT_STORE_UNIT', unit)
             }
         },

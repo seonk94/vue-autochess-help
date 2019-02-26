@@ -27,11 +27,21 @@ export const store = new Vuex.Store({
             if(state.storeUnits.length !== 8) {
                 let _id = randomString();
                 unit.id = _id;
-                /* eslint-disable no-console */
-                console.log(unit);
                 state.storeUnits = [ ...state.storeUnits, unit ]
             }
-        }
+        },
+        INSERT_FIELD_UNIT(state, unit) {
+            if(state.fieldUnits.length !== 10) {
+                state.fieldUnits = [ ...state.fieldUnits, unit ]
+            }
+        },
+        DELETE_STORE_UNIT(state, unit) {
+            state.storeUnits = state.storeUnits.filter(ele => ele.id !== unit.id )
+        },
+        DELETE_FIELD_UNIT(state, unit) {
+            state.fieldUnits = state.fieldUnits.filter(ele => ele.id !== unit.id )
+        },
+        
     },
     actions: {
 
