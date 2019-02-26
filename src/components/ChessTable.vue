@@ -1,23 +1,11 @@
 <template>
     <v-flex xs12>
         <div>
-            <h3>ChessTable</h3>
+            <h3 :class="{ warn: fieldUnits.length > 10  }">ChessTable</h3>
         </div>
-        
         <v-container class="field-container" fluid grid-list-sm>
             <v-layout row wrap>
-                <v-flex v-for="unit in fieldUnits" :key="unit.name" xs2>
-                    <!-- <img :src="`https://randomuser.me/api/portraits/men/${i + 20}.jpg`" class="image" alt="lorem" width="100%" height="100%"> -->
-                    <!-- <v-badge overlap :color="unit.color">
-                        <span slot="badge">{{unit.level}}</span>
-                        <v-avatar
-                        :tile="false"
-                        :size="50"
-                        :color="unit.color"
-                        >
-                            <img src="https://vuetifyjs.com/apple-touch-icon-180x180.png" alt="avatar" width="100%" height="100%">
-                        </v-avatar>
-                    </v-badge> -->
+                <v-flex v-for="unit in fieldUnits" :key="unit.id" xs2>
                     <Avatar :unit="unit" :isBadge="true" :isDropDown="true" :ClickMove="GoStoreUnit" :ClickSell="SellFieldUnit" />
                 </v-flex>
             </v-layout>
@@ -26,22 +14,11 @@
         <v-container class="store-container" fluid grid-list-sm>
             <v-layout row wrap>
                 <v-flex xs2></v-flex>
-                <v-flex v-for="(unit, i) in storeUnits" :key="i" xs1>
-                    <!-- <v-avatar
-                    :tile="false"
-                    :size="50"
-                    :color="unit.color"
-                    >
-                        <img :src="unit.img" alt="avatar" width="100%" height="100%">
-                    </v-avatar> -->
+                <v-flex v-for="unit in storeUnits" :key="unit.id" xs1>
                     <Avatar :unit="unit" :isBadge="true" :isDropDown="true" :ClickMove="GoFieldUnit" :ClickSell="SellStoreUnit" />
                 </v-flex>
             </v-layout>
         </v-container>
-
-
-
-
     </v-flex>
 </template>
 
@@ -66,9 +43,14 @@
                 this.$store.commit('DELETE_FIELD_UNIT', unit);
             },
             GoFieldUnit(unit) {
-                if(this.fieldUnits.length !== 10) {
+                if(this.fieldUnits.length !== 12) {
                     this.$store.commit('DELETE_STORE_UNIT', unit);
                     this.$store.commit('INSERT_FIELD_UNIT', unit);
+
+                    let arr = this.fieldUnits.filter(ele => ele.name === unit.name && ele.level === unit.level )
+                    if(arr.length === 3 && unit.level !== 3) {
+                        this.$store.commit('COMBINATION_FIELD_UNITS', arr);
+                    }
                 }
             },
             SellStoreUnit(unit) {
@@ -87,5 +69,8 @@
     }
     .store-container {
         height: 100px;
+    }
+    .warn {
+        color: red;
     }
 </style>
