@@ -15,7 +15,7 @@
                             <v-list-tile-title v-text="item.name"></v-list-tile-title>
                         </v-list-tile-content>
 
-                        <v-list-tile-avatar v-for="(img, i) in item.img" class="class-list-avatar" :key="i" :size="20">
+                        <v-list-tile-avatar v-for="img in item.img" class="class-list-avatar" :key="img" :size="20">
                             <img :src="img">
                         </v-list-tile-avatar>
                         
@@ -35,27 +35,10 @@
                             <v-list-tile-title v-text="item.name"></v-list-tile-title>
                         </v-list-tile-content>
 
-                        <v-list-tile-avatar class="class-list-avatar" :size="20">
-                            <img :src="require('../assets/logo.svg')">
+                        <v-list-tile-avatar class="class-list-avatar" v-for="img in item.img" :key="img" :size="20">
+                            <img :src="img">
                         </v-list-tile-avatar>
-                        <v-list-tile-avatar class="class-list-avatar" :size="20">
-                            <img :src="require('../assets/logo.svg')">
-                        </v-list-tile-avatar>
-                        <v-list-tile-avatar class="class-list-avatar" :size="20">
-                            <img :src="require('../assets/logo.svg')">
-                        </v-list-tile-avatar>
-                        <v-list-tile-avatar class="class-list-avatar" :size="20">
-                            <img :src="require('../assets/logo.svg')">
-                        </v-list-tile-avatar>
-                        <v-list-tile-avatar class="class-list-avatar" :size="20">
-                            <img :src="require('../assets/logo.svg')">
-                        </v-list-tile-avatar>
-                        <v-list-tile-avatar class="class-list-avatar" :size="20">
-                            <img :src="require('../assets/logo.svg')">
-                        </v-list-tile-avatar>
-                        <v-list-tile-avatar class="class-list-avatar" :size="20">
-                            <img :src="require('../assets/logo.svg')">
-                        </v-list-tile-avatar>
+ 
                         
                     </v-list-tile>
                 </v-list>
@@ -106,20 +89,23 @@
         }),
         mounted() {
             if(this.units.length > 1) {
-                console.log(this.units)
                 this.units.forEach(unit => {
                     let spec
+
                     if(Array.isArray(unit.spec)){
                         unit.spec.forEach(ele => {
-                            console.log(ele);
                             spec = this.specs.find(tmp => (tmp.name).toLowerCase() === ele.toLowerCase());
-                            console.log(spec)
                             spec.img = [...spec.img, unit.img]
                         })
                     } else {
                         spec = this.specs.find(ele => (ele.name).toLowerCase() === (unit.spec).toLowerCase());
                         spec.img = [...spec.img, unit.img]
                     }
+
+                    let clas = this.classes.find(ele => (ele.name).toLowerCase() === (unit.class).toLowerCase());
+                    console.log(clas.img)
+                    clas.img = [...clas.img, unit.img]
+                    
                 })
             }
         }
