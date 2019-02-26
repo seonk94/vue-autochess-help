@@ -7,34 +7,16 @@
                     <v-list-tile
                         class="class-list"
                         v-for="item in specs"
-                        :key="item"
+                        :key="item.name"
                         avatar
                     >
 
                         <v-list-tile-content>
-                            <v-list-tile-title v-text="item"></v-list-tile-title>
+                            <v-list-tile-title v-text="item.name"></v-list-tile-title>
                         </v-list-tile-content>
 
-                        <v-list-tile-avatar class="class-list-avatar" :size="20">
-                            <img :src="require('../assets/logo.svg')">
-                        </v-list-tile-avatar>
-                        <v-list-tile-avatar class="class-list-avatar" :size="20">
-                            <img :src="require('../assets/logo.svg')">
-                        </v-list-tile-avatar>
-                        <v-list-tile-avatar class="class-list-avatar" :size="20">
-                            <img :src="require('../assets/logo.svg')">
-                        </v-list-tile-avatar>
-                        <v-list-tile-avatar class="class-list-avatar" :size="20">
-                            <img :src="require('../assets/logo.svg')">
-                        </v-list-tile-avatar>
-                        <v-list-tile-avatar class="class-list-avatar" :size="20">
-                            <img :src="require('../assets/logo.svg')">
-                        </v-list-tile-avatar>
-                        <v-list-tile-avatar class="class-list-avatar" :size="20">
-                            <img :src="require('../assets/logo.svg')">
-                        </v-list-tile-avatar>
-                        <v-list-tile-avatar class="class-list-avatar" :size="20">
-                            <img :src="require('../assets/logo.svg')">
+                        <v-list-tile-avatar v-for="(img, i) in item.img" class="class-list-avatar" :key="i" :size="20">
+                            <img :src="img">
                         </v-list-tile-avatar>
                         
                     </v-list-tile>
@@ -45,12 +27,12 @@
                     <v-list-tile
                         class="class-list"
                         v-for="item in classes"
-                        :key="item"
+                        :key="item.name"
                         avatar
                     >
 
                         <v-list-tile-content>
-                            <v-list-tile-title v-text="item"></v-list-tile-title>
+                            <v-list-tile-title v-text="item.name"></v-list-tile-title>
                         </v-list-tile-content>
 
                         <v-list-tile-avatar class="class-list-avatar" :size="20">
@@ -94,11 +76,52 @@
             })
         },
         data:() => ({
-            classes: ['Assassin', 'Demon Hunter', 'Druid', 'Hunter', 'Knight', 'Mage', 'Mech', 'Shaman', 'Warlock', 'Warrior'],
-            specs: ['Beast', 'Demon', 'Dwarf', 'Ogre', 'Dragon', 'Elementals', 'Elf', 'Goblin', 'Human', 'Naga', 'Orc', 'Troll', 'Undead']
+            classes: [
+                { name: 'Assassin', img: []},
+                { name: 'Demon Hunter', img: []},
+                { name: 'Druid', img: []},
+                { name: 'Hunter', img: []},
+                { name: 'Knight', img: []},
+                { name: 'Mage', img: []},
+                { name: 'Mech', img: []},
+                { name: 'Shaman', img: []},
+                { name: 'Warlock', img: []},
+                { name: 'Warrior', img: []}
+            ],
+            specs: [
+                { name : 'Beast', img: []},
+                { name : 'Demon', img: []},
+                { name : 'Dwarf', img: []},
+                { name : 'Ogre', img: []},
+                { name : 'Dragon', img: []},
+                { name : 'Elementals', img: []},
+                { name : 'Elf', img: []},
+                { name : 'Goblin', img: []},
+                { name : 'Human', img: []},
+                { name : 'Naga', img: []},
+                { name : 'Orc', img: []}, 
+                { name : 'Troll', img: []},
+                { name : 'Undead', img: []}
+            ]
         }),
-        created() {
-            
+        mounted() {
+            if(this.units.length > 1) {
+                console.log(this.units)
+                this.units.forEach(unit => {
+                    let spec
+                    if(Array.isArray(unit.spec)){
+                        unit.spec.forEach(ele => {
+                            console.log(ele);
+                            spec = this.specs.find(tmp => (tmp.name).toLowerCase() === ele.toLowerCase());
+                            console.log(spec)
+                            spec.img = [...spec.img, unit.img]
+                        })
+                    } else {
+                        spec = this.specs.find(ele => (ele.name).toLowerCase() === (unit.spec).toLowerCase());
+                        spec.img = [...spec.img, unit.img]
+                    }
+                })
+            }
         }
     }
 </script>

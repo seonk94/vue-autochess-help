@@ -4,7 +4,7 @@ const cost1 = [
         name: 'Axe',
         color: '#adb5bd',
         class: 'Warrior',
-        spec: 'ORC',
+        spec: 'Orc',
         level: 1,
         img: require('../assets/unit/Axe.png')
     },
