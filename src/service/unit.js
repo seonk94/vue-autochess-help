@@ -484,8 +484,8 @@ const cost5 = [
         cost: '5$',
         name: 'Death Prophet',
         color: '#fd7e14',
-        class: '',
-        spec: '',
+        class: 'Warlock',
+        spec: 'Undead',
         level: 1,
         img: require('../assets/unit/Death Prophet.png')
     },
