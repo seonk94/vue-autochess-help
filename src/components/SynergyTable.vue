@@ -110,6 +110,7 @@
             if(this.units.length > 1) {
                 this.units.forEach(unit => {
                     let spec
+
                     if(Array.isArray(unit.spec)){
                         unit.spec.forEach(ele => {
                             spec = this.specs.find(tmp => this.equalName(tmp.name, ele));
