@@ -15,9 +15,14 @@
                         </v-list-tile-content>
 
                         <v-list-tile-avatar v-for="unit in item.img" class="class-list-avatar" :key="unit.name" :size="20">
-                            <img :src="unit.img" class="unit-none" v-if="unit.status === 'NONE'">
-                            <img :src="unit.img" class="unit-avaliable" v-else-if="unit.status === 'AVALIABLE'">
-                            <img :src="unit.img" v-else-if="unit.status === 'USED'">
+                            <v-tooltip bottom>
+                                <template #activator="data">
+                                    <img v-on="data.on" :src="unit.img" class="unit-none" v-if="unit.status === 'NONE'">
+                                    <img v-on="data.on" :src="unit.img" class="unit-avaliable" v-else-if="unit.status === 'AVALIABLE'">
+                                    <img v-on="data.on" :src="unit.img" v-else-if="unit.status === 'USED'">
+                                </template>
+                                <span>{{unit.name}}</span>
+                            </v-tooltip>
                         </v-list-tile-avatar>
                         
                     </v-list-tile>
@@ -37,9 +42,14 @@
                         </v-list-tile-content>
 
                         <v-list-tile-avatar class="class-list-avatar" v-for="unit in item.img" :key="unit.name" :size="20">
-                            <img :src="unit.img" class="unit-none" v-if="unit.status === 'NONE'">
-                            <img :src="unit.img" class="unit-avaliable" v-else-if="unit.status === 'AVALIABLE'">
-                            <img :src="unit.img" v-else-if="unit.status === 'USED'">
+                            <v-tooltip bottom>
+                                <template #activator="data">
+                                    <img v-on="data.on" :src="unit.img" class="unit-none" v-if="unit.status === 'NONE'">
+                                    <img v-on="data.on" :src="unit.img" class="unit-avaliable" v-else-if="unit.status === 'AVALIABLE'">
+                                    <img v-on="data.on" :src="unit.img" v-else-if="unit.status === 'USED'">
+                                </template>
+                                <span>{{unit.name}}</span>
+                            </v-tooltip>
                         </v-list-tile-avatar>
 
                         
@@ -103,14 +113,14 @@
                 { name : 'Naga', img: [], index: 0},
                 { name : 'Orc', img: [], index: 0}, 
                 { name : 'Troll', img: [], index: 0},
-                { name : 'Undead', img: [], index: 0}
+                { name : 'Undead', img: [], index: 0},
+                { name : 'Satyr', img: [], index: 0}
             ]
         }),
         mounted() {
             if(this.units.length > 1) {
                 this.units.forEach(unit => {
                     let spec
-
                     if(Array.isArray(unit.spec)){
                         unit.spec.forEach(ele => {
                             spec = this.specs.find(tmp => this.equalName(tmp.name, ele));

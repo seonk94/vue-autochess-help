@@ -97,6 +97,6 @@
         padding: 4px;
         font-size: 12px;
         text-align: center;
-
+        transition: 0.1s
     }
 </style>

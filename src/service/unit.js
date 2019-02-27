@@ -121,12 +121,57 @@ const cost2 = [
     },
     {
         cost: '2$',
+        name: 'Windranger',
+        color: '#91a7ff',
+        class: 'Hunter',
+        spec: 'Elf',
+        level: 1,
+        img: require('../assets/unit/Windranger.png')
+    },
+    {
+        cost: '2$',
+        name: 'Omniknight',
+        color: '#91a7ff',
+        class: 'Knight',
+        spec: 'Human',
+        level: 1,
+        img: require('../assets/unit/Omniknight.png')
+    },
+    {
+        cost: '2$',
         name: 'Beastmaster',
         color: '#91a7ff',
         class: 'Hunter',
         spec: 'Orc',
         level: 1,
         img: require('../assets/unit/Beastmaster.png')
+    },
+    {
+        cost: '2$',
+        name: 'Venomancer',
+        color: '#91a7ff',
+        class: 'Warlock',
+        spec: 'Beast',
+        level: 1,
+        img: require('../assets/unit/Venomancer.png')
+    },
+    {
+        cost: '2$',
+        name: 'Riki',
+        color: '#91a7ff',
+        class: 'Assassin',
+        spec: 'Satyr',
+        level: 1,
+        img: require('../assets/unit/Riki.png')
+    },
+    {
+        cost: '2$',
+        name: 'Mirana',
+        color: '#91a7ff',
+        class: 'Hunter',
+        spec: 'Elf',
+        level: 1,
+        img: require('../assets/unit/Mirana.png')
     },
     {
         cost: '2$',
