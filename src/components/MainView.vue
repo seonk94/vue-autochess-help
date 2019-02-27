@@ -7,7 +7,7 @@
             <v-flex xs4>
                 <UnitList/>
             </v-flex>
-            <v-flex xs8>
+            <v-flex xs7 offset-xs1>
                 <RightView/>
             </v-flex>
         </v-layout>
