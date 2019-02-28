@@ -20,12 +20,12 @@
                             </v-tooltip>
                         </v-list-tile-content>
 
-                        <v-list-tile-avatar v-for="unit in item.img" class="class-list-avatar" :key="unit.name" :size="20">
+                        <v-list-tile-avatar v-for="unit in item.img" class="class-list-avatar" :key="unit.name" :size="40">
                             <v-tooltip bottom>
                                 <template #activator="data">
-                                    <img v-on="data.on" :src="unit.img" class="unit-none" v-if="unit.status === 'NONE'">
-                                    <img v-on="data.on" :src="unit.img" class="unit-avaliable" v-else-if="unit.status === 'AVALIABLE'">
-                                    <img v-on="data.on" :src="unit.img" v-else-if="unit.status === 'USED'">
+                                    <img v-on="data.on" :src="unit.img" class="unit-none" @click="clickUnitAvatar(unit.name)" v-if="unit.status === 'NONE'">
+                                    <img v-on="data.on" :src="unit.img" class="unit-avaliable" @click="clickUnitAvatar(unit.name)" v-else-if="unit.status === 'AVALIABLE'">
+                                    <img v-on="data.on" :src="unit.img" @click="clickUnitAvatar(unit.name)" v-else-if="unit.status === 'USED'">
                                 </template>
                                 <span>{{unit.name}}</span>
                             </v-tooltip>
@@ -53,12 +53,12 @@
                             </v-tooltip>
                         </v-list-tile-content>
 
-                        <v-list-tile-avatar class="class-list-avatar" v-for="unit in item.img" :key="unit.name" :size="20">
+                        <v-list-tile-avatar class="class-list-avatar" v-for="unit in item.img" :key="unit.name" :size="40">
                             <v-tooltip bottom>
                                 <template #activator="data">
-                                    <img v-on="data.on" :src="unit.img" class="unit-none" v-if="unit.status === 'NONE'">
-                                    <img v-on="data.on" :src="unit.img" class="unit-avaliable" v-else-if="unit.status === 'AVALIABLE'">
-                                    <img v-on="data.on" :src="unit.img" v-else-if="unit.status === 'USED'">
+                                    <img v-on="data.on" :src="unit.img" class="unit-none" @click="clickUnitAvatar(unit.name)" v-if="unit.status === 'NONE'">
+                                    <img v-on="data.on" :src="unit.img" class="unit-avaliable" @click="clickUnitAvatar(unit.name)" v-else-if="unit.status === 'AVALIABLE'">
+                                    <img v-on="data.on" :src="unit.img" @click="clickUnitAvatar(unit.name)" v-else-if="unit.status === 'USED'">
                                 </template>
                                 <span>{{unit.name}}</span>
                             </v-tooltip>
@@ -70,18 +70,31 @@
                         <v-list-tile-content>
                             <v-list-tile-title v-text="'색상설명'"></v-list-tile-title>
                         </v-list-tile-content>
-                        효과1
-                        <v-list-tile-avatar class="class-list-avatar effect-one" :size="20">
-                            <span></span>
-                        </v-list-tile-avatar>
-                        효과2
-                        <v-list-tile-avatar class="class-list-avatar effect-middle" :size="20">
-                            <span></span>
-                        </v-list-tile-avatar>
-                        Full
-                        <v-list-tile-avatar class="class-list-avatar effect-finish"  :size="20">
-                            <span></span>
-                        </v-list-tile-avatar>
+                        <v-tooltip top>
+                            <template #activator="data">
+                                <v-list-tile-avatar v-on="data.on" class="class-list-avatar effect-one" :size="40">
+                                    <span></span>
+                                </v-list-tile-avatar>
+                            </template>
+                            <span>첫 시너지 효과</span>
+                        </v-tooltip>
+                        <v-tooltip top>
+                            <template #activator="data">
+                                <v-list-tile-avatar v-on="data.on" class="class-list-avatar effect-middle" :size="40">
+                                    <span></span>
+                                </v-list-tile-avatar>
+                            </template>
+                            <span>시너지 효과가 셋일 때 중간 효과 발동</span>
+                        </v-tooltip>
+                        <v-tooltip top>
+                            <template #activator="data">
+                                <v-list-tile-avatar v-on="data.on" class="class-list-avatar effect-finish" :size="40">
+                                    <span></span>
+                                </v-list-tile-avatar>
+                            </template>
+                            <span>시너지 조건 모두 만족</span>
+                        </v-tooltip>
+
                     </v-list-tile>
 
                 </v-list>
@@ -119,7 +132,7 @@
         },
         data:() => ({
             classes: [
-                { name: 'Assassin', img: [], effective: '#fafafa', effectIndex: [3, 6], index: 0, effect: '+10% (3), +20% (6) 확률로 암살자가 4배의 피해를 입습니다.'},
+                { name: 'Assassin', img: [], effective: '#fafafa', effectIndex: [3, 6, 9], index: 0, effect: '+10% 확률로 암살자가 3 (3), 4 (6), 5 (9)배의 피해를 입습니다.'},
                 { name: 'Demon Hunter', img: [], effective: '#fafafa', effectIndex: [1, 2], index: 0, effect: '(1) 상대방이 악마 효과를 잃습니다.\n (2) 당신은 악마 효과를 절대 잃지 않습니다.'},
                 { name: 'Druid', img: [], effective: '#fafafa', effectIndex: [2, 4], index: 0, effect: '(2) 드루이드들은 2유닛들만으로 성이 될 수 있습니다.\n (4) 드루이드들은 2유닛들만으로 3성이 될 수 있습니다.'},
                 { name: 'Hunter', img: [], effective: '#fafafa', effectIndex: [3, 6], index: 0, effect: '모든 사냥꾼들에게 추가 공격력 +25%(3), +60%(6)'},
@@ -137,13 +150,13 @@
                 { name : 'Ogre', img: [], effective: '#fafafa', effectIndex: [1], index: 0, effect: '+10% Max Hp'},
                 { name : 'Dragon', img: [], effective: '#fafafa', effectIndex: [3], index: 0, effect: '(3) 라운드가 시작 될 때 모든 아군 용이 마나 100을 가지고 시작'},
                 { name : 'Elementals', img: [], effective: '#fafafa', effectIndex: [2, 4], index: 0, effect: '모든 아군 원소 (2), 전체 (4) 를 공격하는 근접 적은 30% 확률로 돌이 됨'},
-                { name : 'Elf', img: [], effective: '#fafafa', effectIndex: [3, 6], index: 0, effect: '모든 아군 엘프에게 회피 +25% (3), +25% (6)'},
+                { name : 'Elf', img: [], effective: '#fafafa', effectIndex: [3, 6, 9], index: 0, effect: '모든 아군 엘프에게 회피 +25% (3), +25% (6), +25% (9)'},
                 { name : 'Goblin', img: [], effective: '#fafafa', effectIndex: [3, 6], index: 0, effect: '무작위 아군 1명 (3), 전체 아군 고블린 (6) 에게 +15 방어력과 10HP 리젠'},
                 { name : 'Human', img: [], effective: '#fafafa', effectIndex: [2, 4, 6], index: 0, effect: '모든 아군 인간은 곡격할 때 20% (2), 25% (4), 30% (6) 확률로 적을 잠시동안 무장 해제'},
-                { name : 'Naga', img: [], effective: '#fafafa', effectIndex: [2, 4], index: 0, effect: '모든 아군에게 마법 방어력 +20 (2), +40 (4)'},
-                { name : 'Orc', img: [], effective: '#fafafa', effectIndex: [2, 4], index: 0, effect: '모든 아군 오크에게 체력 +250 (2), +350 (4)'}, 
+                { name : 'Naga', img: [], effective: '#fafafa', effectIndex: [2, 4], index: 0, effect: '모든 아군에게 마법 방어력 +30 (2), +30 (4)'},
+                { name : 'Orc', img: [], effective: '#fafafa', effectIndex: [2, 4], index: 0, effect: '모든 아군 오크에게 체력 +200 (2), +300 (4)'}, 
                 { name : 'Troll', img: [], effective: '#fafafa', effectIndex: [2, 4], index: 0, effect: '모든 아군 트롤 (2), 전체 (4) 에게 공격속도 35'},
-                { name : 'Undead', img: [], effective: '#fafafa', effectIndex: [2, 4], index: 0, effect: '모든 적군에게 방어력 -5 (2), -7 (4)'},
+                { name : 'Undead', img: [], effective: '#fafafa', effectIndex: [2, 4], index: 0, effect: '모든 적군에게 방어력 -4 (2), -6 (4)'},
                 { name : 'Satyr', img: [], effective: '#fafafa', effectIndex: [1], index: 0, effect: '필드 유닛 은신'}
             ]
         }),
@@ -188,16 +201,8 @@
                             if(ele.status === 'USED') usedIndex++;
                         })
                         spec.index = usedIndex;
-                        if(spec.effectIndex.length === 3) {
-                            if(spec.index >= spec.effectIndex[0]) spec.effective = '#91a7ff';
-                            if(spec.index >= spec.effectIndex[1]) spec.effective = '#3b5bdb';
-                            if(spec.index >= spec.effectIndex[2]) spec.effective = '#fd7e14'
-                        } else if(spec.effectIndex.length === 2) {
-                            if(spec.index >= spec.effectIndex[0]) spec.effective = '#91a7ff';
-                            if(spec.index >= spec.effectIndex[1]) spec.effective = '#fd7e14';
-                        } else if(spec.effectIndex.length === 1) {
-                            if(spec.index >= spec.effectIndex[0]) spec.effective = '#fd7e14';
-                        }
+                        this.changeEffective(spec);
+
                     })
                 } else {
                     usedIndex = 0;
@@ -209,16 +214,8 @@
                         if(ele.status === 'USED') usedIndex++;
                     })
                     spec.index = usedIndex;
-                    if(spec.effectIndex.length === 3) {
-                        if(spec.index >= spec.effectIndex[0]) spec.effective = '#91a7ff';
-                        if(spec.index >= spec.effectIndex[1]) spec.effective = '#3b5bdb';
-                        if(spec.index >= spec.effectIndex[2]) spec.effective = '#fd7e14'
-                    } else if(spec.effectIndex.length === 2) {
-                        if(spec.index >= spec.effectIndex[0]) spec.effective = '#91a7ff';
-                        if(spec.index >= spec.effectIndex[1]) spec.effective = '#fd7e14';
-                    } else if(spec.effectIndex.length === 1) {
-                        if(spec.index === spec.effectIndex[0]) spec.effective = '#fd7e14';
-                    }
+                    this.changeEffective(spec);
+
                 }
                 
                 usedIndex = 0;
@@ -226,17 +223,8 @@
                     if(ele.status === 'USED') usedIndex++;
                 })
                 cls.index = usedIndex;
-                
-                if(cls.effectIndex.length === 3) {
-                    if(cls.index >= cls.effectIndex[0]) cls.effective = '#91a7ff';
-                    if(cls.index >= cls.effectIndex[1]) cls.effective = '#3b5bdb';
-                    if(cls.index >= cls.effectIndex[2]) cls.effective = '#fd7e14'
-                } else if(cls.effectIndex.length === 2) {
-                    if(cls.index >= cls.effectIndex[0]) cls.effective = '#91a7ff';
-                    if(cls.index >= cls.effectIndex[1]) cls.effective = '#fd7e14';
-                } else if(cls.effectIndex.length === 1) {
-                    if(cls.index >= cls.effectIndex[0]) cls.effective = '#fd7e14';
-                }
+                this.changeEffective(cls);
+
                 
             },
             initNone(ele, status) {
@@ -246,6 +234,22 @@
             },
             equalName(name1, name2) {
                 return name1.toLowerCase() === name2.toLowerCase()
+            },
+            changeEffective(obj) {
+                if(obj.effectIndex.length === 3) {
+                    if(obj.index >= obj.effectIndex[0]) obj.effective = '#91a7ff';
+                    if(obj.index >= obj.effectIndex[1]) obj.effective = '#63e6be';
+                    if(obj.index >= obj.effectIndex[2]) obj.effective = '#fd7e14'
+                } else if(obj.effectIndex.length === 2) {
+                    if(obj.index >= obj.effectIndex[0]) obj.effective = '#91a7ff';
+                    if(obj.index >= obj.effectIndex[1]) obj.effective = '#fd7e14';
+                } else if(obj.effectIndex.length === 1) {
+                    if(obj.index >= obj.effectIndex[0]) obj.effective = '#fd7e14';
+                }
+            },
+            clickUnitAvatar(name) {
+                let unit = this.units.find(ele => ele.name === name)
+                this.$store.commit('INSERT_STORE_UNIT', unit)
             }
         }
     }
@@ -257,8 +261,8 @@
         font-size:10px !important;
     }
     .class-list-avatar {
-        min-width:20px !important;
-        width:20px !important;
+        min-width:40px !important;
+        width:40px !important;
     }
     .unit-avaliable {
         opacity: 0.55;
@@ -271,7 +275,7 @@
         border-radius: 50%;
     }
     .effect-middle {
-        background: #3b5bdb;
+        background: #63e6be;
         border-radius: 50%;
     }
     .effect-finish {

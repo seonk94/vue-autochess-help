@@ -1,30 +1,21 @@
 <template>
-    <v-layout row wrap v-if="isBadge === true">
-        <v-flex xs12>
-            <v-badge class="my-overlap-badge" overlap right>
-                <span slot="badge">{{unit.level}}</span>
-                <v-menu bottom left >                    
-                        <v-btn
-                            slot="activator"
-                            :color="unit.color"
-                            fab
-                        >
-                            <img class="my-button-img" :src="unit.img" :alt="unit.name" v-if="unit.img">
-                            <img class="my-button-img" :src="require('../../assets/logo.svg')" :alt="unit.name" v-else>
-                        </v-btn>
-                    <v-list>
-                        <v-list-tile @click="ClickMove(unit)">
-                            <v-list-tile-title>move</v-list-tile-title>
-                        </v-list-tile>
-                        <v-list-tile @click="ClickSell(unit)">
-                            <v-list-tile-title>sell</v-list-tile-title>
-                        </v-list-tile>
-                    </v-list>
-                    
-                </v-menu>
-            </v-badge>
-        </v-flex>
-    </v-layout>
+
+    <v-badge class="my-overlap-badge" overlap right v-if="isBadge === true">
+        <span slot="badge">{{unit.level}}</span>
+        <v-avatar
+            :color="unit.color"
+        >
+            <v-tooltip top>
+                <template #activator="data">
+                    <img class="my-button-img" v-on="data.on" :src="unit.img" :alt="unit.name" v-if="unit.img" @click="ClickMove(unit)" @click.right="clickRight($event, unit)">
+                    <img class="my-button-img" v-on="data.on" :src="require('../../assets/logo.svg')" :alt="unit.name" @click="ClickMove(unit)" @click.right="clickRight($event, unit)" v-else>
+                </template>
+                <span>{{unit.name}}</span>
+            </v-tooltip>   
+        </v-avatar>
+            
+    </v-badge>
+
     <span v-else>
         <v-hover>
             <v-avatar 
@@ -58,7 +49,7 @@
             unit: {},
             ClickNoBadge: Function,
             ClickMove: Function,
-            ClickSell: Function
+            clickRight: Function
         }, 
         computed: {
             
@@ -78,8 +69,8 @@
         height: 90%;
     }
     .my-button-img {
-        width: 50px;
-        height: 50px;
+        width: 42px;
+        height: 42px;
         border-radius: 50%;
     }
     .my-avatar-badge-img {

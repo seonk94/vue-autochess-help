@@ -4,10 +4,10 @@
         text-xs-center
         wrap
         >
-            <v-flex xs4>
+            <!-- <v-flex xs12 md4>
                 <UnitList/>
-            </v-flex>
-            <v-flex xs7 offset-xs1>
+            </v-flex> -->
+            <v-flex xs12>
                 <RightView/>
             </v-flex>
         </v-layout>
@@ -15,11 +15,9 @@
 </template>
 
 <script>
-    import UnitList from './UnitList'
     import RightView from './RightView'
     export default {
         components: {
-            UnitList,
             RightView
         },
     }

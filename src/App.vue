@@ -30,6 +30,9 @@ export default {
   components: {
     MainView
   },
+  created() {
+    document.title = 'AutoChess Assist'
+  },
   data () {
     return {
       //

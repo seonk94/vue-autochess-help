@@ -50,7 +50,8 @@ export const store = new Vuex.Store({
             state.fieldUnits.splice(deleteUnit1, 1);
             let deleteUnit2 = state.fieldUnits.findIndex(ele => ele.id === arr[2].id);
             state.fieldUnits.splice(deleteUnit2, 1);
-        }
+        },
+        
     },
     actions: {
 

@@ -1,12 +1,12 @@
 <template>
     <v-flex xs12>
         <div>
-            <h3 :class="{ warn: fieldUnits.length > 10  }">ChessTable</h3>
+            <h3 :class="{ warn: fieldUnits.length > 10  }">AutoChess</h3>
         </div>
         <v-container class="field-container" fluid grid-list-sm>
             <v-layout row wrap>
                 <v-flex v-for="unit in fieldUnits" :key="unit.id" xs2>
-                    <Avatar :unit="unit" :isBadge="true" :isDropDown="true" :ClickMove="GoStoreUnit" :ClickSell="SellFieldUnit" />
+                    <Avatar :unit="unit" :isBadge="true" :isDropDown="true" :ClickMove="GoStoreUnit" :clickRight="clickRightField"/>
                 </v-flex>
             </v-layout>
         </v-container>
@@ -15,7 +15,7 @@
             <v-layout row wrap>
                 <v-flex xs2></v-flex>
                 <v-flex v-for="unit in storeUnits" :key="unit.id" xs1>
-                    <Avatar :unit="unit" :isBadge="true" :isDropDown="true" :ClickMove="GoFieldUnit" :ClickSell="SellStoreUnit" />
+                    <Avatar :unit="unit" :isBadge="true" :isDropDown="true" :ClickMove="GoFieldUnit" :clickRight="clickRightStore"/>
                 </v-flex>
             </v-layout>
         </v-container>
@@ -25,6 +25,7 @@
 <script>
     import { mapGetters } from 'vuex'
     import Avatar from './avatar/Avatar.vue'
+
     export default {
         computed: {
             ...mapGetters({
@@ -55,11 +56,19 @@
             },
             SellStoreUnit(unit) {
                 this.$store.commit('DELETE_STORE_UNIT', unit);
+            },
+            clickRightStore(e, unit) {
+                e.preventDefault();
+                this.$store.commit('DELETE_STORE_UNIT', unit);
+            },
+            clickRightField(e, unit) {
+                e.preventDefault();
+                this.$store.commit('DELETE_FIELD_UNIT', unit);
             }
         },
         components: {
             Avatar
-        }
+        },
     }
 </script>
 
