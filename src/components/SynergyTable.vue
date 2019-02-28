@@ -184,7 +184,6 @@
                         spec.effective = '#fafafa'
                         specImg = spec.img.find(ele => ele.name === unit.name);
                         specImg.status = status
-                        console.log(spec)
                         spec.img.forEach(ele => {
                             if(ele.status === 'USED') usedIndex++;
                         })
