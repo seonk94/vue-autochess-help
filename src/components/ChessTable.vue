@@ -1,6 +1,6 @@
 <template>
     <v-flex xs12>
-        <div>
+        <div class="chess-title">
             <h3 :class="{ warn: fieldUnits.length > 10  }">AutoChess</h3>
         </div>
         <v-container class="field-container" fluid grid-list-sm>
@@ -10,7 +10,7 @@
                 </v-flex>
             </v-layout>
         </v-container>
-        <v-divider></v-divider>
+        <v-divider dark></v-divider>
         <v-container class="store-container" fluid grid-list-sm>
             <v-layout row wrap>
                 <v-flex xs2></v-flex>
@@ -81,5 +81,8 @@
     }
     .warn {
         color: red;
+    }
+    .chess-title{
+        color: white;
     }
 </style>

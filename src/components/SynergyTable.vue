@@ -1,9 +1,9 @@
 <template>
     <v-flex xs12>
-        <v-layout row wrap>
+        <v-layout row wrap class="my-background-color">
 
-            <v-flex xs6>
-                <v-list>
+            <v-flex xs6 class="my-background-color">
+                <v-list style="background: #343a40">
                     <v-list-tile
                         class="class-list"
                         v-for="item in specs"
@@ -14,7 +14,7 @@
                         <v-list-tile-content >
                             <v-tooltip top>
                                 <template #activator="effect">
-                                    <v-list-tile-title v-on="effect.on" v-text="item.name"></v-list-tile-title>
+                                    <v-list-tile-title class="my-list-content" v-on="effect.on" v-text="item.name"></v-list-tile-title>
                                 </template>
                                 <span>{{item.effect}}</span>
                             </v-tooltip>
@@ -34,8 +34,8 @@
                     </v-list-tile>
                 </v-list>
             </v-flex>
-            <v-flex xs6>
-                <v-list>
+            <v-flex xs6 class="my-background-color">
+                <v-list style="background: #343a40">
                     <v-list-tile
                         class="class-list"
                         v-for="item in classes"
@@ -47,7 +47,7 @@
                         <v-list-tile-content>
                             <v-tooltip top>
                                 <template #activator="effect">
-                                    <v-list-tile-title v-on="effect.on" v-text="item.name"></v-list-tile-title>
+                                    <v-list-tile-title class="my-list-content" v-on="effect.on" v-text="item.name"></v-list-tile-title>
                                 </template>
                                 <span>{{item.effect}}</span>
                             </v-tooltip>
@@ -66,9 +66,9 @@
 
                         
                     </v-list-tile>
-                    <v-list-tile class="class-list" avatar>
+                    <v-list-tile class="class-list my-background-color" avatar>
                         <v-list-tile-content>
-                            <v-list-tile-title v-text="'색상설명'"></v-list-tile-title>
+                            <v-list-tile-title class="my-list-content" v-text="'색상설명'"></v-list-tile-title>
                         </v-list-tile-content>
                         <v-tooltip top>
                             <template #activator="data">
@@ -111,11 +111,13 @@
             ...mapGetters({
                 units: 'getUnits',
                 fieldUnits: 'getFieldUnits',
-                storeUnits: 'getStoreUnits'
+                storeUnits: 'getStoreUnits',
+                classes: 'getClasses',
+                specs: 'getSpecs'
             })
         },
         watch: {
-            storeUnits() {
+            /* storeUnits() {
                 this.classes.forEach(ele => this.initNone(ele, 'NONE'))
                 this.specs.forEach(ele => this.initNone(ele, 'NONE'))
                 
@@ -128,10 +130,10 @@
                 
                 this.storeUnits.forEach(unit => this.moveUnit(unit, 'AVALIABLE'))
                 this.fieldUnits.forEach(unit => this.moveUnit(unit, 'USED'))
-            }
+            } */
         },
         data:() => ({
-            classes: [
+            /* classes: [
                 { name: 'Assassin', img: [], effective: '#fafafa', effectIndex: [3, 6, 9], index: 0, effect: '+10% 확률로 암살자가 3 (3), 4 (6), 5 (9)배의 피해를 입습니다.'},
                 { name: 'Demon Hunter', img: [], effective: '#fafafa', effectIndex: [1, 2], index: 0, effect: '(1) 상대방이 악마 효과를 잃습니다.\n (2) 당신은 악마 효과를 절대 잃지 않습니다.'},
                 { name: 'Druid', img: [], effective: '#fafafa', effectIndex: [2, 4], index: 0, effect: '(2) 드루이드들은 2유닛들만으로 성이 될 수 있습니다.\n (4) 드루이드들은 2유닛들만으로 3성이 될 수 있습니다.'},
@@ -158,10 +160,14 @@
                 { name : 'Troll', img: [], effective: '#fafafa', effectIndex: [2, 4], index: 0, effect: '모든 아군 트롤 (2), 전체 (4) 에게 공격속도 35'},
                 { name : 'Undead', img: [], effective: '#fafafa', effectIndex: [2, 4], index: 0, effect: '모든 적군에게 방어력 -4 (2), -6 (4)'},
                 { name : 'Satyr', img: [], effective: '#fafafa', effectIndex: [1], index: 0, effect: '필드 유닛 은신'}
-            ]
+            ] */
         }),
-        mounted() {
-            if(this.units.length > 1) {
+        created() {
+            this.$store.commit('INIT_STATUS', 'NONE');
+
+
+
+            /* if(this.units.length > 1) {
                 this.units.forEach(unit => {
                     let spec
                     if(Array.isArray(unit.spec)){
@@ -177,10 +183,10 @@
                     let cls = this.classes.find(ele => this.equalName(ele.name, unit.class))
                     cls.img = [ ...cls.img, {name: unit.name, img: unit.img, status: 'NONE'} ]
                 })
-            }
+            } */
         },
         methods: {
-            moveUnit(unit, status) {
+            /* moveUnit(unit, status) {
                 let cls = this.classes.find(ele => this.equalName(ele.name, unit.class))
                 cls.effective = '#fafafa'
                 let clsImg = cls.img.find(ele => ele.name === unit.name);
@@ -193,7 +199,6 @@
                     unit.spec.forEach(tmp => {
                         usedIndex = 0;
                         spec = this.specs.find(ele => this.equalName(ele.name, tmp));
-                        if(spec.name === 'Demon') console.log('배열임', spec)
                         spec.effective = '#fafafa'
                         specImg = spec.img.find(ele => ele.name === unit.name);
                         specImg.status = status
@@ -249,7 +254,7 @@
                 } 
 
 
-            },
+            }, */
             clickUnitAvatar(name) {
                 let unit = this.units.find(ele => ele.name === name)
                 this.$store.commit('INSERT_STORE_UNIT', unit)
@@ -271,7 +276,7 @@
         opacity: 1;
     }
     .unit-none {
-        opacity: 0.6;
+        opacity: 0.45;
     }
     .unit-active {
         border: 3px solid yellow;
@@ -287,5 +292,13 @@
     .effect-finish {
         background: #fd7e14;
         border-radius: 50%;
+    }
+    .my-list-content {
+        color: white;
+        font-weight: bold;
+        font-size:13px;
+    }
+    .my-background-color {
+        background: #343a40;
     }
 </style>
