@@ -25,7 +25,7 @@
                                 <template #activator="data">
                                     <img v-on="data.on" :src="unit.img" class="unit-none" @click="clickUnitAvatar(unit.name)" v-if="unit.status === 'NONE'">
                                     <img v-on="data.on" :src="unit.img" class="unit-avaliable" @click="clickUnitAvatar(unit.name)" v-else-if="unit.status === 'AVALIABLE'">
-                                    <img v-on="data.on" :src="unit.img" @click="clickUnitAvatar(unit.name)" v-else-if="unit.status === 'USED'">
+                                    <img v-on="data.on" :src="unit.img" class="unit-active" @click="clickUnitAvatar(unit.name)" v-else-if="unit.status === 'USED'">
                                 </template>
                                 <span>{{unit.name}}</span>
                             </v-tooltip>
@@ -58,7 +58,7 @@
                                 <template #activator="data">
                                     <img v-on="data.on" :src="unit.img" class="unit-none" @click="clickUnitAvatar(unit.name)" v-if="unit.status === 'NONE'">
                                     <img v-on="data.on" :src="unit.img" class="unit-avaliable" @click="clickUnitAvatar(unit.name)" v-else-if="unit.status === 'AVALIABLE'">
-                                    <img v-on="data.on" :src="unit.img" @click="clickUnitAvatar(unit.name)" v-else-if="unit.status === 'USED'">
+                                    <img v-on="data.on" :src="unit.img" class="unit-active" @click="clickUnitAvatar(unit.name)" v-else-if="unit.status === 'USED'">
                                 </template>
                                 <span>{{unit.name}}</span>
                             </v-tooltip>
@@ -189,11 +189,11 @@
                 let usedIndex = 0;
                 let spec
                 let specImg
-
                 if(Array.isArray(unit.spec)) {
                     unit.spec.forEach(tmp => {
                         usedIndex = 0;
                         spec = this.specs.find(ele => this.equalName(ele.name, tmp));
+                        if(spec.name === 'Demon') console.log('배열임', spec)
                         spec.effective = '#fafafa'
                         specImg = spec.img.find(ele => ele.name === unit.name);
                         specImg.status = status
@@ -207,6 +207,7 @@
                 } else {
                     usedIndex = 0;
                     spec = this.specs.find(ele => this.equalName(ele.name, unit.spec));
+                    if(spec.name === 'Demon') console.log(spec)
                     spec.effective = '#fafafa'
                     specImg = spec.img.find(ele => ele.name === unit.name);
                     specImg.status = status
@@ -245,7 +246,9 @@
                     if(obj.index >= obj.effectIndex[1]) obj.effective = '#fd7e14';
                 } else if(obj.effectIndex.length === 1) {
                     if(obj.index >= obj.effectIndex[0]) obj.effective = '#fd7e14';
-                }
+                } 
+
+
             },
             clickUnitAvatar(name) {
                 let unit = this.units.find(ele => ele.name === name)
@@ -265,10 +268,13 @@
         width:40px !important;
     }
     .unit-avaliable {
-        opacity: 0.55;
+        opacity: 1;
     }
     .unit-none {
-        opacity: 0.15;
+        opacity: 0.6;
+    }
+    .unit-active {
+        border: 3px solid yellow;
     }
     .effect-one {
         background: #91a7ff;
