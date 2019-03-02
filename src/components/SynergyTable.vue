@@ -115,19 +115,27 @@
             })
         },
         watch: {
-
+            
         },
         data:() => ({
-
+            isAdd: false
         }),
         created() {
             this.$store.commit('INIT_STATUS', 'NONE');
+
+            setInterval(() => {
+                if(this.isAdd) {
+                    this.$store.dispatch('UPDATE_FIREBASE')
+                    this.isAdd = false;
+                }
+            }, 30000)
         },
         methods: {
-
             clickUnitAvatar(name) {
                 let unit = this.units.find(ele => ele.name === name)
+                this.$store.commit('CLICK_UNIT', unit)
                 this.$store.commit('INSERT_STORE_UNIT', unit)
+                this.isAdd = true;
             }
         }
     }

@@ -33,6 +33,13 @@
                 storeUnits: 'getStoreUnits'
             })
         },
+        watch: {
+            fieldUnits() {
+                if(this.fieldUnits.length === 0 && this.storeUnits.length === 0) {
+                    this.$store.commit('INIT_REFERENCE')
+                }
+            }
+        },
         methods: {
             GoStoreUnit(unit) {
                 if(this.storeUnits.length !== 8) {

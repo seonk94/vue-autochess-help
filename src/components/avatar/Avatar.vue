@@ -17,27 +17,20 @@
     </v-badge>
 
     <span v-else>
-        <v-hover>
-            <v-avatar 
-            slot-scope="{hover}"
-            class="my-avater"
-            :tile="false"
-            :size="50"
-            :color="unit.color"
-            >
-                <v-img class="my-avatar-img" :src="unit.img" @click="ClickNoBadge(unit)" :alt="unit.name">
-                    <v-expand-transition>
-                        <div
-                            v-if="hover"
-                            class="my-hover"
-                            :style="{background: unit.color}"
-                        >
-                            {{unit.name}}
-                        </div>
-                    </v-expand-transition>
-                </v-img>
-            </v-avatar>
-        </v-hover>
+        <v-avatar 
+        class="my-avater"
+        :tile="false"
+        :size="50"
+        :color="unit.color"
+        >
+            <v-tooltip top>
+                <template #activator="data">
+                    <img class="my-button-img" v-on="data.on" :src="unit.img" :alt="unit.name">
+                </template>
+                <span>{{unit.name}}</span>
+            </v-tooltip>   
+        
+        </v-avatar>
     </span>
 </template>
 

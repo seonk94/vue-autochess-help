@@ -3,14 +3,24 @@ import Vuex from 'vuex';
 import Vue from 'vue';
 import * as unit from '../service/unit'
 import randomString from 'random-string'
+import firestore from '../config/firestore'
 
 Vue.use(Vuex);
+
+const db = firestore.firestore();
 
 export const store = new Vuex.Store({
     state: {
         units: unit.units,
         fieldUnits: [],
         storeUnits: [],
+        costRank: [
+            {cost: '1$', units: []},
+            {cost: '2$', units: []},
+            {cost: '3$', units: []},
+            {cost: '4$', units: []},
+            {cost: '5$', units: []}
+        ],
         classes: [
             { name: 'Assassin', img: [], effective: '#343a40', effectIndex: [3, 6, 9], index: 0, effect: '+10% 확률로 암살자가 3 (3), 4 (6), 5 (9)배의 피해를 입습니다.'},
             { name: 'Demon Hunter', img: [], effective: '#343a40', effectIndex: [1, 2], index: 0, effect: '(1) 상대방이 악마 효과를 잃습니다.\n (2) 당신은 악마 효과를 절대 잃지 않습니다.'},
@@ -55,6 +65,9 @@ export const store = new Vuex.Store({
         },
         getSpecs(state) {
             return state.specs
+        },
+        getCostRank(state) {
+            return state.costRank
         }
     },
     mutations: {
@@ -308,9 +321,53 @@ export const store = new Vuex.Store({
                 cls.img = [ ...cls.img, { name: unit.name, img: unit.img, status: status }]
             })
         },
-        
+        CLICK_UNIT(state, unit) {
+            let clickUnit = state.units.find(ele => ele.name === unit.name);
+            if(clickUnit.reference < 10) {
+                clickUnit.reference++;
+            }
+        },
+        INIT_REFERENCE(state) {
+            state.units.forEach(unit => {
+                unit.reference = 0
+            })
+        },
+        GET_REFERENCE(state, ref) {
+            let sortRef = Object.keys(ref).sort((a, b) => { return ref[b].reference - ref[a].reference})
+            sortRef.forEach(unit => {
+                let tempUnit = state.units.find(ele => ele.name === unit)
+                let tempCostRank = state.costRank.find(ele => ele.cost === tempUnit.cost);
+                tempCostRank.units.push(tempUnit);
+            })
+        }
     },
     actions: {
-
+        UPDATE_FIREBASE({state}) {
+            let tempData;
+            const unitDoc = db.collection('units').doc('66POe7sqFqFRX9Txv7GD')
+            unitDoc.get().then(doc => {
+                if(doc.exists) {
+                    tempData = doc.data();
+                }
+            })
+            .then(() => {
+                state.units.forEach(unit => {
+                    if(unit.reference !== 0) {
+                        tempData[unit.name].reference += unit.reference
+                    }
+                })
+            })
+            .then(() => {
+                unitDoc.update({
+                    ...tempData
+                })
+            })
+        },
+        GET_REFERENCE({commit}) {
+            const unitDoc = db.collection('units').doc('66POe7sqFqFRX9Txv7GD')
+            unitDoc.get().then(doc => {
+                commit('GET_REFERENCE', doc.data());
+            })
+        }
     }
 })

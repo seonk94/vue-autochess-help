@@ -6,6 +6,7 @@ const cost1 = [
         class: 'Warrior',
         spec: 'Orc',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Axe.png')
     },
     {
@@ -15,6 +16,7 @@ const cost1 = [
         class: 'Druid',
         spec: 'Beast',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Enchantress.png')
     },
     {
@@ -24,6 +26,7 @@ const cost1 = [
         class: 'Mage',
         spec: 'Ogre',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Ogre Magi.png')
     },
     {
@@ -33,6 +36,7 @@ const cost1 = [
         class: 'Warrior',
         spec: 'Beast',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Tusk.png')
     },
     {
@@ -42,6 +46,7 @@ const cost1 = [
         class: 'Hunter',
         spec: 'Undead',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Drow Ranger.png')
     },
     {
@@ -51,6 +56,7 @@ const cost1 = [
         class: 'Assassin',
         spec: 'Goblin',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Bounty Hunter.png')
     },
     {
@@ -60,6 +66,7 @@ const cost1 = [
         class: 'Mech',
         spec: 'Goblin',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Clockwerk.png')
     },
     {
@@ -69,6 +76,7 @@ const cost1 = [
         class: 'Mech',
         spec: 'Goblin',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Tinker.png')
     },
     {
@@ -78,6 +86,7 @@ const cost1 = [
         class: 'Shaman',
         spec: 'Troll',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Shadow Shaman.png')
     },
     {
@@ -87,6 +96,7 @@ const cost1 = [
         class: 'Knight',
         spec: 'Troll',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Bat Rider.png')
     },
     {
@@ -96,6 +106,7 @@ const cost1 = [
         class: 'Demon Hunter',
         spec: 'Elf',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Anti-Mage.png')
     },
     {
@@ -105,6 +116,7 @@ const cost1 = [
         class: 'Warrior',
         spec: 'Elementals',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Tiny.png')
     },
 ]
@@ -117,6 +129,7 @@ const cost2 = [
         class: 'Mage',
         spec: 'Human',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Crystal Maiden.png')
     },
     {
@@ -126,16 +139,8 @@ const cost2 = [
         class: 'Hunter',
         spec: 'Elf',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Windranger.png')
-    },
-    {
-        cost: '2$',
-        name: 'Omniknight',
-        color: '#91a7ff',
-        class: 'Knight',
-        spec: 'Human',
-        level: 1,
-        img: require('../assets/unit/Omniknight.png')
     },
     {
         cost: '2$',
@@ -144,6 +149,7 @@ const cost2 = [
         class: 'Hunter',
         spec: 'Orc',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Beastmaster.png')
     },
     {
@@ -153,25 +159,8 @@ const cost2 = [
         class: 'Warlock',
         spec: 'Beast',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Venomancer.png')
-    },
-    {
-        cost: '2$',
-        name: 'Riki',
-        color: '#91a7ff',
-        class: 'Assassin',
-        spec: 'Satyr',
-        level: 1,
-        img: require('../assets/unit/Riki.png')
-    },
-    {
-        cost: '2$',
-        name: 'Mirana',
-        color: '#91a7ff',
-        class: 'Hunter',
-        spec: 'Elf',
-        level: 1,
-        img: require('../assets/unit/Mirana.png')
     },
     {
         cost: '2$',
@@ -180,6 +169,7 @@ const cost2 = [
         class: 'Warrior',
         spec: 'Orc',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Juggernaut.png')
     },
     {
@@ -189,6 +179,7 @@ const cost2 = [
         class: 'Mech',
         spec: 'Goblin',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Timbersaw.png')
     },
     {
@@ -198,6 +189,7 @@ const cost2 = [
         class: 'Assassin',
         spec: 'Demon',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Queen of Pain.png')
     },
     {
@@ -207,6 +199,7 @@ const cost2 = [
         class: 'Mage',
         spec: ['Elf', 'Dragon'],
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Puck.png')
     },
     {
@@ -216,6 +209,7 @@ const cost2 = [
         class: 'Warlock',
         spec: 'Troll',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Witch Doctor.png')
     },
     {
@@ -225,6 +219,7 @@ const cost2 = [
         class: 'Warrior',
         spec: 'Naga',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Slardar.png')
     },
     {
@@ -234,6 +229,7 @@ const cost2 = [
         class: 'Knight',
         spec: 'Demon',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Chaos Knight.png')
     },
     {
@@ -243,6 +239,7 @@ const cost2 = [
         class: 'Druid',
         spec: 'Elf',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Treant Protector.png')
     },
     {
@@ -252,6 +249,7 @@ const cost2 = [
         class: 'Knight',
         spec: 'Elf',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Luna.png')
     },
     {
@@ -261,6 +259,7 @@ const cost2 = [
         class: 'Druid',
         spec: 'Elf',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Nature\'s Prophet.png')
     },
     {
@@ -270,6 +269,7 @@ const cost2 = [
         class: 'Assassin',
         spec: 'Elementals',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Morphling.png')
     },
     
@@ -283,7 +283,38 @@ const cost3 = [
         class: 'Knight',
         spec: 'Undead',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Abaddon.png')
+    },
+    {
+        cost: '3$',
+        name: 'Riki',
+        color: '#3b5bdb',
+        class: 'Assassin',
+        spec: 'Satyr',
+        level: 1,
+        reference: 0,
+        img: require('../assets/unit/Riki.png')
+    },
+    {
+        cost: '3$',
+        name: 'Mirana',
+        color: '#3b5bdb',
+        class: 'Hunter',
+        spec: 'Elf',
+        level: 1,
+        reference: 0,
+        img: require('../assets/unit/Mirana.png')
+    },
+    {
+        cost: '3$',
+        name: 'Omniknight',
+        color: '#3b5bdb',
+        class: 'Knight',
+        spec: 'Human',
+        level: 1,
+        reference: 0,
+        img: require('../assets/unit/Omniknight.png')
     },
     {
         cost: '3$',
@@ -292,6 +323,7 @@ const cost3 = [
         class: 'Warlock',
         spec: 'Demon',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Shadow Fiend.png')
     },
     {
@@ -301,6 +333,7 @@ const cost3 = [
         class: 'Warrior',
         spec: ['Human', 'Beast'],
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Lycan.png')
     },
     {
@@ -310,6 +343,7 @@ const cost3 = [
         class: 'Assassin',
         spec: 'Naga',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Slark.png')
     },
     {
@@ -319,6 +353,7 @@ const cost3 = [
         class: 'Assassin',
         spec: 'Elf',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Phantom Assassin.png')
     },
     {
@@ -328,6 +363,7 @@ const cost3 = [
         class: 'Demon Hunter',
         spec: 'Demon',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Terrorblade.png')
     },
     {
@@ -337,6 +373,7 @@ const cost3 = [
         class: 'Assassin',
         spec: 'Beast',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Sand King.png')
     },
     {
@@ -346,6 +383,7 @@ const cost3 = [
         class: 'Mage',
         spec: 'Elementals',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Razor.png')
     },
     {
@@ -355,6 +393,7 @@ const cost3 = [
         class: 'Mage',
         spec: 'Human',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Lina.png')
     },
     {
@@ -364,6 +403,7 @@ const cost3 = [
         class: 'Assassin',
         spec: 'Dragon',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Viper.png')
     },
     {
@@ -373,6 +413,7 @@ const cost3 = [
         class: 'Hunter',
         spec: 'Dwarf',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Sniper.png')
     }
 ]
@@ -385,6 +426,7 @@ const cost4 = [
         class: 'Knight',
         spec: ['Human', 'Dragon'],
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Dragon Knight.png')
     },
     {
@@ -394,6 +436,7 @@ const cost4 = [
         class: 'Druid',
         spec: 'Beast',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Lone Druid.png')
     },
     {
@@ -403,6 +446,7 @@ const cost4 = [
         class: 'Warrior',
         spec: 'Human',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Kunkka.png')
     },
     {
@@ -412,6 +456,7 @@ const cost4 = [
         class: 'Hunter',
         spec: 'Naga',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Medusa.png')
     },
     {
@@ -421,6 +466,7 @@ const cost4 = [
         class: 'Assassin',
         spec: 'Elf',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Templar Assassin.png')
     },
     {
@@ -430,6 +476,7 @@ const cost4 = [
         class: 'Shaman',
         spec: 'Orc',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Disruptor.png')
     },
     {
@@ -439,6 +486,7 @@ const cost4 = [
         class: 'Warrior',
         spec: 'Demon',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Doom.png')
     },
     {
@@ -448,6 +496,7 @@ const cost4 = [
         class: 'Warlock',
         spec: 'Goblin',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Alchemist.png')
     },
     {
@@ -457,6 +506,7 @@ const cost4 = [
         class: 'Warlock',
         spec: 'Undead',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Necrophos.png')
     },
     {
@@ -466,6 +516,7 @@ const cost4 = [
         class: 'Warrior',
         spec: 'Troll',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Troll Warlord.png')
     },
     {
@@ -475,6 +526,7 @@ const cost4 = [
         class: 'Mage',
         spec: 'Human',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Keeper of the Light.png')
     },
 ]
@@ -487,6 +539,7 @@ const cost5 = [
         class: 'Mage',
         spec: 'Undead',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Lich.png')
     },
     {
@@ -496,6 +549,7 @@ const cost5 = [
         class: 'Hunter',
         spec: 'Naga',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Tidehunter.png')
     },
     {
@@ -505,15 +559,17 @@ const cost5 = [
         class: 'Warlock',
         spec: 'Elementals',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Enigma.png')
     },
     {
-        cost: '5$',
+        cost: '5$', 
         name: 'Gyrocopter',
         color: '#fd7e14',
         class: 'Mech',
         spec: 'Dwarf',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Gyrocopter.png')
     },
     {
@@ -523,6 +579,7 @@ const cost5 = [
         class: 'Mech',
         spec: 'Goblin',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Techies.png')
     },
     {
@@ -532,6 +589,7 @@ const cost5 = [
         class: 'Warlock',
         spec: 'Undead',
         level: 1,
+        reference: 0,
         img: require('../assets/unit/Death Prophet.png')
     },
 ]

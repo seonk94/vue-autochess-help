@@ -8,6 +8,7 @@
             <v-flex xs12>
                 <ChessTable/>
                 <SynergyTable/>
+                <RankingTable/>
             </v-flex>
         </v-layout>
     </v-container>
@@ -16,9 +17,10 @@
 <script>
     import ChessTable from './ChessTable';
     import SynergyTable from './SynergyTable';
+    import RankingTable from './RankingTable';
     export default {
         components: {
-            ChessTable, SynergyTable
+            ChessTable, SynergyTable, RankingTable
         }
     }
 </script>
