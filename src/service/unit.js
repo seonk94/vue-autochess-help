@@ -134,16 +134,6 @@ const cost2 = [
     },
     {
         cost: '2$',
-        name: 'Windranger',
-        color: '#91a7ff',
-        class: 'Hunter',
-        spec: 'Elf',
-        level: 1,
-        reference: 0,
-        img: require('../assets/unit/Windranger.png')
-    },
-    {
-        cost: '2$',
         name: 'Beastmaster',
         color: '#91a7ff',
         class: 'Hunter',
@@ -285,6 +275,16 @@ const cost3 = [
         level: 1,
         reference: 0,
         img: require('../assets/unit/Abaddon.png')
+    },
+    {
+        cost: '3$',
+        name: 'Windranger',
+        color: '#3b5bdb',
+        class: 'Hunter',
+        spec: 'Elf',
+        level: 1,
+        reference: 0,
+        img: require('../assets/unit/Windranger.png')
     },
     {
         cost: '3$',

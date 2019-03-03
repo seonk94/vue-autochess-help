@@ -18,8 +18,32 @@ export default {
   },
   created() {
     document.title = 'AutoChess Assist'
-
+    this.$store.dispatch('GET_SYNERGYS')
+    const storage = firestore.storage().ref();
+    const unitAvatarRef = storage.child('images').child('unit_avatar')
     const db = firestore.firestore();
+
+    unit.units.forEach(unit => {
+      let spaceRef = unitAvatarRef.child(unit.name + '.png')
+      let path = spaceRef.fullPath
+      let name = spaceRef.name
+
+      spaceRef.getDownloadURL().then(url => {
+        let xhr = new XMLHttpRequest();
+        xhr.responseType = 'blob';
+        xhr.onload = (event) => {
+          let blob = xhr.response
+        }
+        xhr.open('GET', url)
+        xhr.send();
+
+        this.images = [...this.imgaes, { name: unit.name, src: url }]
+      })
+
+    })
+
+    console.log(this.images)
+
     let usersDoc = db.collection('users').doc('cSYvZsZPFh5eqC0RZyKI');
 
     let tempData;
@@ -44,7 +68,7 @@ export default {
   },
   data () {
     return {
-      //
+      images: []
     }
   }
 }

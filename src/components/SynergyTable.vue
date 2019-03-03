@@ -111,14 +111,17 @@
             ...mapGetters({
                 units: 'getUnits',
                 classes: 'getClasses',
-                specs: 'getSpecs'
+                specs: 'getSpecs',
+                init_length: 'getSynergysLength',
+                synergys: 'getSynergys'
             })
         },
         watch: {
             
         },
         data:() => ({
-            isAdd: false
+            isAdd: false,
+            count: 0
         }),
         created() {
             this.$store.commit('INIT_STATUS', 'NONE');
@@ -129,6 +132,16 @@
                     this.isAdd = false;
                 }
             }, 30000)
+
+            setInterval(() => {
+                this.count = 0;
+                Object.keys(this.synergys).forEach(ele => {
+                    this.count += (Number(this.synergys[ele]) * 1)
+                })
+                if(this.init_length < this.count) {
+                    this.$store.dispatch('UPDATE_SYNERGYS', {synergys: this.synergys, length: this.count})
+                }
+            }, 5000)
         },
         methods: {
             clickUnitAvatar(name) {

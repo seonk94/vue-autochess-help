@@ -21,6 +21,8 @@ export const store = new Vuex.Store({
             {cost: '4$', units: []},
             {cost: '5$', units: []}
         ],
+        synergys: {},
+        initSynergyLength: Number(0),
         classes: [
             { name: 'Assassin', img: [], effective: '#343a40', effectIndex: [3, 6, 9], index: 0, effect: '+10% 확률로 암살자가 3 (3), 4 (6), 5 (9)배의 피해를 입습니다.'},
             { name: 'Demon Hunter', img: [], effective: '#343a40', effectIndex: [1, 2], index: 0, effect: '(1) 상대방이 악마 효과를 잃습니다.\n (2) 당신은 악마 효과를 절대 잃지 않습니다.'},
@@ -68,6 +70,12 @@ export const store = new Vuex.Store({
         },
         getCostRank(state) {
             return state.costRank
+        },
+        getSynergys(state) {
+            return state.synergys
+        },
+        getSynergysLength(state) {
+            return state.initSynergyLength
         }
     },
     mutations: {
@@ -127,6 +135,10 @@ export const store = new Vuex.Store({
                             if(spec.index < spec.effectIndex[0]) spec.effective = '#343a40'
                             if(spec.index >= spec.effectIndex[0]) spec.effective = '#fd7e14';
                         } 
+
+                        if(spec.effective !== '#343a40') {
+                            state.synergys[spec.name]++
+                        }
                     }
 
                 })
@@ -153,6 +165,10 @@ export const store = new Vuex.Store({
                         if(spec.index < spec.effectIndex[0]) spec.effective = '#343a40'
                         if(spec.index >= spec.effectIndex[0]) spec.effective = '#fd7e14';
                     } 
+
+                    if(spec.effective !== '#343a40') {
+                        state.synergys[spec.name]++
+                    }
                 }
             }
 
@@ -177,6 +193,10 @@ export const store = new Vuex.Store({
                     if(cls.index < cls.effectIndex[0]) cls.effective = '#343a40'
                     if(cls.index >= cls.effectIndex[0]) cls.effective = '#fd7e14';
                 } 
+
+                if(cls.effective !== '#343a40') {
+                    state.synergys[cls.name]++
+                }
             }
 
         },
@@ -339,6 +359,12 @@ export const store = new Vuex.Store({
                 let tempCostRank = state.costRank.find(ele => ele.cost === tempUnit.cost);
                 tempCostRank.units.push(tempUnit);
             })
+        },
+        GET_SYNERGYS(state, ref) {
+            state.synergys = ref;
+            Object.keys(ref).forEach(ele => {
+                state.initSynergyLength += Number(ref[ele])
+            })
         }
     },
     actions: {
@@ -367,6 +393,30 @@ export const store = new Vuex.Store({
             const unitDoc = db.collection('units').doc('66POe7sqFqFRX9Txv7GD')
             unitDoc.get().then(doc => {
                 commit('GET_REFERENCE', doc.data());
+            })
+        },
+        GET_SYNERGYS({commit}) {
+            const syngDoc = db.collection('synergys').doc('YT9bd0GLKb7vd9JXGfUf')
+            syngDoc.get().then(doc => {
+                commit('GET_SYNERGYS', doc.data());
+            })
+        },
+        UPDATE_SYNERGYS({state}, obj) {
+            const syngDoc = db.collection('synergys').doc('YT9bd0GLKb7vd9JXGfUf')
+            let tempData;
+            syngDoc.get().then(doc => {
+                tempData = doc.data();
+            })
+            .then(() => {
+                Object.keys(obj.synergys).forEach(ele => {
+                    tempData[ele] += obj.synergys[ele]
+                })
+                state.initSynergyLength = obj.length
+            })
+            .then(() => {
+                syngDoc.update({
+                    ...tempData
+                })
             })
         }
     }

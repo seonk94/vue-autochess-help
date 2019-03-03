@@ -2,7 +2,7 @@
     <v-flex xs12>
         <v-divider dark></v-divider>
         <div class="chess-title">
-            <h3 style="color: white; font-size:20px; font-weight: bold; padding: 20px">적폐 순위</h3>
+            <h3 style="color: white; font-size:20px; font-weight: bold; padding: 20px">인기 순위</h3>
         </div>
         <v-container class="field-container" fluid grid-list-sm>
             <v-layout>
