@@ -365,6 +365,10 @@ export const store = new Vuex.Store({
             Object.keys(ref).forEach(ele => {
                 state.initSynergyLength += Number(ref[ele])
             })
+        },
+        SET_IMAGE(state, obj) {
+            let selectUnit = state.units.find(ele => ele.name === obj.name);
+            selectUnit.img = obj.url
         }
     },
     actions: {
@@ -417,6 +421,26 @@ export const store = new Vuex.Store({
                 syngDoc.update({
                     ...tempData
                 })
+            })
+        },
+        UPLOAD_IMAGE({state}) {
+            let tempData;
+            const unitDoc = db.collection('units').doc('66POe7sqFqFRX9Txv7GD')
+
+            unitDoc.get().then(doc => {
+                if(doc.exists) {
+                    tempData = doc.data();
+                }
+            })
+            .then(() => {
+                state.units.forEach(unit => {
+                    tempData[unit.name].src = unit.img
+                })
+            })
+            .then(() => {
+                unitDoc.update({
+                    ...tempData
+                }) 
             })
         }
     }

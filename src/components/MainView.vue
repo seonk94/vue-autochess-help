@@ -21,6 +21,9 @@
     export default {
         components: {
             ChessTable, SynergyTable, RankingTable
+        },
+        methods: {
+
         }
     }
 </script>

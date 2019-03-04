@@ -7,7 +7,7 @@ const cost1 = [
         spec: 'Orc',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Axe.png')
+        // img: require('../assets/unit/Axe.png')
     },
     {
         cost: '1$',
@@ -17,7 +17,7 @@ const cost1 = [
         spec: 'Beast',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Enchantress.png')
+        // img: require('../assets/unit/Enchantress.png')
     },
     {
         cost: '1$',
@@ -27,7 +27,7 @@ const cost1 = [
         spec: 'Ogre',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Ogre Magi.png')
+        // img: require('../assets/unit/Ogre Magi.png')
     },
     {
         cost: '1$',
@@ -37,7 +37,7 @@ const cost1 = [
         spec: 'Beast',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Tusk.png')
+        // img: require('../assets/unit/Tusk.png')
     },
     {
         cost: '1$',
@@ -47,7 +47,7 @@ const cost1 = [
         spec: 'Undead',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Drow Ranger.png')
+        // img: require('../assets/unit/Drow Ranger.png')
     },
     {
         cost: '1$',
@@ -57,7 +57,7 @@ const cost1 = [
         spec: 'Goblin',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Bounty Hunter.png')
+        // img: require('../assets/unit/Bounty Hunter.png')
     },
     {
         cost: '1$',
@@ -67,7 +67,7 @@ const cost1 = [
         spec: 'Goblin',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Clockwerk.png')
+        // img: require('../assets/unit/Clockwerk.png')
     },
     {
         cost: '1$',
@@ -77,7 +77,7 @@ const cost1 = [
         spec: 'Goblin',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Tinker.png')
+        // img: require('../assets/unit/Tinker.png')
     },
     {
         cost: '1$',
@@ -87,7 +87,7 @@ const cost1 = [
         spec: 'Troll',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Shadow Shaman.png')
+        // img: require('../assets/unit/Shadow Shaman.png')
     },
     {
         cost: '1$',
@@ -97,7 +97,7 @@ const cost1 = [
         spec: 'Troll',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Bat Rider.png')
+        // img: require('../assets/unit/Bat Rider.png')
     },
     {
         cost: '1$',
@@ -107,7 +107,7 @@ const cost1 = [
         spec: 'Elf',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Anti-Mage.png')
+        // img: require('../assets/unit/Anti-Mage.png')
     },
     {
         cost: '1$',
@@ -117,7 +117,7 @@ const cost1 = [
         spec: 'Elementals',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Tiny.png')
+        // img: require('../assets/unit/Tiny.png')
     },
 ]
 
@@ -130,7 +130,7 @@ const cost2 = [
         spec: 'Human',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Crystal Maiden.png')
+        // img: require('../assets/unit/Crystal Maiden.png')
     },
     {
         cost: '2$',
@@ -140,7 +140,7 @@ const cost2 = [
         spec: 'Orc',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Beastmaster.png')
+        // img: require('../assets/unit/Beastmaster.png')
     },
     {
         cost: '2$',
@@ -150,7 +150,7 @@ const cost2 = [
         spec: 'Beast',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Venomancer.png')
+        // img: require('../assets/unit/Venomancer.png')
     },
     {
         cost: '2$',
@@ -160,7 +160,7 @@ const cost2 = [
         spec: 'Orc',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Juggernaut.png')
+        // img: require('../assets/unit/Juggernaut.png')
     },
     {
         cost: '2$',
@@ -170,7 +170,7 @@ const cost2 = [
         spec: 'Goblin',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Timbersaw.png')
+        // img: require('../assets/unit/Timbersaw.png')
     },
     {
         cost: '2$',
@@ -180,7 +180,7 @@ const cost2 = [
         spec: 'Demon',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Queen of Pain.png')
+        // img: require('../assets/unit/Queen of Pain.png')
     },
     {
         cost: '2$',
@@ -190,7 +190,7 @@ const cost2 = [
         spec: ['Elf', 'Dragon'],
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Puck.png')
+        // img: require('../assets/unit/Puck.png')
     },
     {
         cost: '2$',
@@ -200,7 +200,7 @@ const cost2 = [
         spec: 'Troll',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Witch Doctor.png')
+        // img: require('../assets/unit/Witch Doctor.png')
     },
     {
         cost: '2$',
@@ -210,7 +210,7 @@ const cost2 = [
         spec: 'Naga',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Slardar.png')
+        // img: require('../assets/unit/Slardar.png')
     },
     {
         cost: '2$',
@@ -220,7 +220,7 @@ const cost2 = [
         spec: 'Demon',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Chaos Knight.png')
+        // img: require('../assets/unit/Chaos Knight.png')
     },
     {
         cost: '2$',
@@ -230,7 +230,7 @@ const cost2 = [
         spec: 'Elf',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Treant Protector.png')
+        // img: require('../assets/unit/Treant Protector.png')
     },
     {
         cost: '2$',
@@ -240,7 +240,7 @@ const cost2 = [
         spec: 'Elf',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Luna.png')
+        // img: require('../assets/unit/Luna.png')
     },
     {
         cost: '2$',
@@ -250,7 +250,7 @@ const cost2 = [
         spec: 'Elf',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Nature\'s Prophet.png')
+        // img: require('../assets/unit/Nature\'s Prophet.png')
     },
     {
         cost: '2$',
@@ -260,7 +260,7 @@ const cost2 = [
         spec: 'Elementals',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Morphling.png')
+        // img: require('../assets/unit/Morphling.png')
     },
     
 ]
@@ -274,7 +274,7 @@ const cost3 = [
         spec: 'Undead',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Abaddon.png')
+        // img: require('../assets/unit/Abaddon.png')
     },
     {
         cost: '3$',
@@ -284,7 +284,7 @@ const cost3 = [
         spec: 'Elf',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Windranger.png')
+        // img: require('../assets/unit/Windranger.png')
     },
     {
         cost: '3$',
@@ -294,7 +294,7 @@ const cost3 = [
         spec: 'Satyr',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Riki.png')
+        // img: require('../assets/unit/Riki.png')
     },
     {
         cost: '3$',
@@ -304,7 +304,7 @@ const cost3 = [
         spec: 'Elf',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Mirana.png')
+        // img: require('../assets/unit/Mirana.png')
     },
     {
         cost: '3$',
@@ -314,7 +314,7 @@ const cost3 = [
         spec: 'Human',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Omniknight.png')
+        // img: require('../assets/unit/Omniknight.png')
     },
     {
         cost: '3$',
@@ -324,7 +324,7 @@ const cost3 = [
         spec: 'Demon',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Shadow Fiend.png')
+        // img: require('../assets/unit/Shadow Fiend.png')
     },
     {
         cost: '3$',
@@ -334,7 +334,7 @@ const cost3 = [
         spec: ['Human', 'Beast'],
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Lycan.png')
+        // img: require('../assets/unit/Lycan.png')
     },
     {
         cost: '3$',
@@ -344,7 +344,7 @@ const cost3 = [
         spec: 'Naga',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Slark.png')
+        // img: require('../assets/unit/Slark.png')
     },
     {
         cost: '3$',
@@ -354,7 +354,7 @@ const cost3 = [
         spec: 'Elf',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Phantom Assassin.png')
+        // img: require('../assets/unit/Phantom Assassin.png')
     },
     {
         cost: '3$',
@@ -364,7 +364,7 @@ const cost3 = [
         spec: 'Demon',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Terrorblade.png')
+        // img: require('../assets/unit/Terrorblade.png')
     },
     {
         cost: '3$',
@@ -374,7 +374,7 @@ const cost3 = [
         spec: 'Beast',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Sand King.png')
+        // img: require('../assets/unit/Sand King.png')
     },
     {
         cost: '3$',
@@ -384,7 +384,7 @@ const cost3 = [
         spec: 'Elementals',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Razor.png')
+        // img: require('../assets/unit/Razor.png')
     },
     {
         cost: '3$',
@@ -394,7 +394,7 @@ const cost3 = [
         spec: 'Human',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Lina.png')
+        // img: require('../assets/unit/Lina.png')
     },
     {
         cost: '3$',
@@ -404,7 +404,7 @@ const cost3 = [
         spec: 'Dragon',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Viper.png')
+        // img: require('../assets/unit/Viper.png')
     },
     {
         cost: '3$',
@@ -414,7 +414,7 @@ const cost3 = [
         spec: 'Dwarf',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Sniper.png')
+        // img: require('../assets/unit/Sniper.png')
     }
 ]
 
@@ -427,7 +427,7 @@ const cost4 = [
         spec: ['Human', 'Dragon'],
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Dragon Knight.png')
+        // img: require('../assets/unit/Dragon Knight.png')
     },
     {
         cost: '4$',
@@ -437,7 +437,7 @@ const cost4 = [
         spec: 'Beast',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Lone Druid.png')
+        // img: require('../assets/unit/Lone Druid.png')
     },
     {
         cost: '4$',
@@ -447,7 +447,7 @@ const cost4 = [
         spec: 'Human',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Kunkka.png')
+        // img: require('../assets/unit/Kunkka.png')
     },
     {
         cost: '4$',
@@ -457,7 +457,7 @@ const cost4 = [
         spec: 'Naga',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Medusa.png')
+        // img: require('../assets/unit/Medusa.png')
     },
     {
         cost: '4$',
@@ -467,7 +467,7 @@ const cost4 = [
         spec: 'Elf',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Templar Assassin.png')
+        // img: require('../assets/unit/Templar Assassin.png')
     },
     {
         cost: '4$',
@@ -477,7 +477,7 @@ const cost4 = [
         spec: 'Orc',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Disruptor.png')
+        // img: require('../assets/unit/Disruptor.png')
     },
     {
         cost: '4$',
@@ -487,7 +487,7 @@ const cost4 = [
         spec: 'Demon',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Doom.png')
+        // img: require('../assets/unit/Doom.png')
     },
     {
         cost: '4$',
@@ -497,7 +497,7 @@ const cost4 = [
         spec: 'Goblin',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Alchemist.png')
+        // img: require('../assets/unit/Alchemist.png')
     },
     {
         cost: '4$',
@@ -507,7 +507,7 @@ const cost4 = [
         spec: 'Undead',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Necrophos.png')
+        // img: require('../assets/unit/Necrophos.png')
     },
     {
         cost: '4$',
@@ -517,7 +517,7 @@ const cost4 = [
         spec: 'Troll',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Troll Warlord.png')
+        // img: require('../assets/unit/Troll Warlord.png')
     },
     {
         cost: '4$',
@@ -527,7 +527,7 @@ const cost4 = [
         spec: 'Human',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Keeper of the Light.png')
+        // img: require('../assets/unit/Keeper of the Light.png')
     },
 ]
 
@@ -540,7 +540,7 @@ const cost5 = [
         spec: 'Undead',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Lich.png')
+        // img: require('../assets/unit/Lich.png')
     },
     {
         cost: '5$',
@@ -550,7 +550,7 @@ const cost5 = [
         spec: 'Naga',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Tidehunter.png')
+        // img: require('../assets/unit/Tidehunter.png')
     },
     {
         cost: '5$',
@@ -560,7 +560,7 @@ const cost5 = [
         spec: 'Elementals',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Enigma.png')
+        // img: require('../assets/unit/Enigma.png')
     },
     {
         cost: '5$', 
@@ -570,7 +570,7 @@ const cost5 = [
         spec: 'Dwarf',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Gyrocopter.png')
+        // img: require('../assets/unit/Gyrocopter.png')
     },
     {
         cost: '5$',
@@ -580,7 +580,7 @@ const cost5 = [
         spec: 'Goblin',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Techies.png')
+        // img: require('../assets/unit/Techies.png')
     },
     {
         cost: '5$',
@@ -590,7 +590,7 @@ const cost5 = [
         spec: 'Undead',
         level: 1,
         reference: 0,
-        img: require('../assets/unit/Death Prophet.png')
+        // img: require('../assets/unit/Death Prophet.png')
     },
 ]
 
