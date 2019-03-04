@@ -1,8 +1,6 @@
 <template>
     <v-flex xs12>
-        <div class="chess-title">
-            <h3 :class="{ warn: fieldUnits.length > 10  }">AutoChess</h3>
-        </div>
+        <v-divider dark></v-divider>
         <v-container class="field-container" fluid grid-list-sm>
             <v-layout row wrap>
                 <v-flex v-for="unit in fieldUnits" :key="unit.id" xs2>
@@ -19,6 +17,7 @@
                 </v-flex>
             </v-layout>
         </v-container>
+        <v-divider dark></v-divider>
     </v-flex>
 </template>
 

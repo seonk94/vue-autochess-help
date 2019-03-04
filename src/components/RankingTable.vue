@@ -2,7 +2,7 @@
     <v-flex xs12>
         <v-divider dark></v-divider>
         <div class="chess-title">
-            <h3 style="color: white; font-size:20px; font-weight: bold; padding: 20px">인기 순위</h3>
+            <h3 style="color: white; font-size:20px; font-weight: bold; padding: 20px">인기 유닛 순위</h3>
         </div>
         <v-container class="field-container" fluid grid-list-sm>
             <v-layout>
@@ -20,19 +20,23 @@
                     <Avatar :unit="unit" :isBadge="false" :isDropDown="false" :ClickMove="nonActive" :clickRight="nonActive" v-if="i < 5"/>
                 </v-flex>
             </v-layout>
+            <v-divider dark></v-divider>
+            <CardView/>
         </v-container>
-        
     </v-flex>
 </template>
 
 <script>
     import { mapGetters } from 'vuex'
     import Avatar from './avatar/Avatar'
+    import CardView from './CardView'
     export default {
         computed: {
             ...mapGetters({
                 units: 'getUnits',
-                costRank: 'getCostRank'
+                costRank: 'getCostRank',
+                synergys: 'getSynergys',
+                synergysRef: 'getSynergysRef'
             })
         },
         data() {
@@ -42,6 +46,8 @@
         },
         created() {
             this.$store.dispatch('GET_REFERENCE')
+            const doc = (new Date()).getFullYear() + '' + ((new Date()).getMonth() + 1) + '' +  ~~((new Date()).getDate() / 7 + 1)
+            this.$store.dispatch('GET_SYNERGYS', doc)
         },
         methods: {
             nonActive() {
@@ -49,7 +55,7 @@
             }
         },
         components: {
-            Avatar
+            Avatar, CardView
         }
     }
 </script>

@@ -113,15 +113,17 @@
                 classes: 'getClasses',
                 specs: 'getSpecs',
                 init_length: 'getSynergysLength',
-                synergys: 'getSynergys'
+                synergys: 'getSynergys',
+                fieldUnits: 'getFieldUnits'
             })
         },
         watch: {
-            
+
         },
         data:() => ({
             isAdd: false,
-            count: 0
+            count: 0,
+            lastClick: ''
         }),
         created() {
             this.$store.commit('INIT_STATUS', 'NONE');
@@ -132,19 +134,17 @@
                     this.isAdd = false;
                 }
             }, 30000)
-
             setInterval(() => {
-                this.count = 0;
-                Object.keys(this.synergys).forEach(ele => {
-                    this.count += (Number(this.synergys[ele]) * 1)
-                })
-                if(this.init_length < this.count) {
-                    this.$store.dispatch('UPDATE_SYNERGYS', {synergys: this.synergys, length: this.count})
+                let currentTime = (new Date()).getTime()
+                if(this.fieldUnits.length >= 6 && (currentTime - this.lastClick) > 29999) {
+                    this.$store.dispatch('UPDATE_SYNERGYS');
+                    this.lastClick = currentTime + 99999999
                 }
             }, 5000)
         },
         methods: {
             clickUnitAvatar(name) {
+                this.lastClick = (new Date()).getTime();
                 let unit = this.units.find(ele => ele.name === name)
                 this.$store.commit('CLICK_UNIT', unit)
                 this.$store.commit('INSERT_STORE_UNIT', unit)

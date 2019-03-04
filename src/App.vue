@@ -20,7 +20,6 @@ export default {
   },
   async created() {
     document.title = 'AutoChess Assist'
-    this.$store.dispatch('GET_SYNERGYS')
     this.unitCount = unit.units.length;
 
     await this.loadImages();
@@ -96,6 +95,7 @@ export default {
         unitCount: 0
     }
   }
+
 }
 </script>
 

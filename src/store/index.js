@@ -9,6 +9,22 @@ Vue.use(Vuex);
 
 const db = firestore.firestore();
 
+const changeEffective = (obj) => {
+    if(obj.effectIndex.length === 3) {
+        if(obj.index < obj.effectIndex[0]) obj.effective = '#343a40'
+        if(obj.index >= obj.effectIndex[0]) obj.effective = '#91a7ff';
+        if(obj.index >= obj.effectIndex[1]) obj.effective = '#63e6be';
+        if(obj.index >= obj.effectIndex[2]) obj.effective = '#fd7e14'
+    } else if(obj.effectIndex.length === 2) {
+        if(obj.index < obj.effectIndex[0]) obj.effective = '#343a40'
+        if(obj.index >= obj.effectIndex[0]) obj.effective = '#91a7ff';
+        if(obj.index >= obj.effectIndex[1]) obj.effective = '#fd7e14';
+    } else if(obj.effectIndex.length === 1) {
+        if(obj.index < obj.effectIndex[0]) obj.effective = '#343a40'
+        if(obj.index >= obj.effectIndex[0]) obj.effective = '#fd7e14';
+    } 
+}
+
 export const store = new Vuex.Store({
     state: {
         units: unit.units,
@@ -21,8 +37,33 @@ export const store = new Vuex.Store({
             {cost: '4$', units: []},
             {cost: '5$', units: []}
         ],
+        synergysRef: [
+            { units: {},name : 'Assassin', ref: 0 },
+            { units: {},name : 'Demon Hunter', ref: 0 },
+            { units: {},name : 'Druid', ref: 0 },
+            { units: {},name : 'Hunter', ref: 0 },
+            { units: {},name : 'Knight', ref: 0 },
+            { units: {},name : 'Mage', ref: 0 },
+            { units: {},name : 'Mech', ref: 0 },
+            { units: {},name : 'Shaman', ref: 0 },
+            { units: {},name : 'Warlock', ref: 0 },
+            { units: {},name : 'Warrior', ref: 0 },
+            { units: {},name : 'Beast', ref: 0 },
+            { units: {},name : 'Demon', ref: 0 },
+            { units: {},name : 'Dwarf', ref: 0 },
+            { units: {},name : 'Ogre', ref: 0 },
+            { units: {},name : 'Dragon', ref: 0 },
+            { units: {},name : 'Element', ref: 0 },
+            { units: {},name : 'Elf', ref: 0 },
+            { units: {},name : 'Goblin', ref: 0 },
+            { units: {},name : 'Human', ref: 0 },
+            { units: {},name : 'Naga', ref: 0 },
+            { units: {},name : 'Orc', ref: 0 },
+            { units: {},name : 'Troll', ref: 0 },
+            { units: {},name : 'Undead', ref: 0 },
+            { units: {},name : 'Satyr', ref: 0 },
+        ],
         synergys: {},
-        initSynergyLength: Number(0),
         classes: [
             { name: 'Assassin', img: [], effective: '#343a40', effectIndex: [3, 6, 9], index: 0, effect: '+10% 확률로 암살자가 3 (3), 4 (6), 5 (9)배의 피해를 입습니다.'},
             { name: 'Demon Hunter', img: [], effective: '#343a40', effectIndex: [1, 2], index: 0, effect: '(1) 상대방이 악마 효과를 잃습니다.\n (2) 당신은 악마 효과를 절대 잃지 않습니다.'},
@@ -38,7 +79,7 @@ export const store = new Vuex.Store({
         specs: [
             { name : 'Beast', img: [], effective: '#343a40', effectIndex: [2, 4, 6], index: 0, effect: '모든 아군에게 추가 공격력 +10% (2), +15% (4), +20% (6)'},
             { name : 'Demon', img: [], effective: '#343a40', effectIndex: [1], index: 0, effect: '아군에 한 종류의 악마만 있을경우 50% 추가 순수 데미지'},
-            { name : 'Dwarf', img: [], effective: '#343a40', effectIndex: [2], index: 0, effect: '공격 범위 +300'},
+            { name : 'Dwarf', img: [], effective: '#343a40', effectIndex: [1], index: 0, effect: '공격 범위 +300'},
             { name : 'Ogre', img: [], effective: '#343a40', effectIndex: [1], index: 0, effect: '+10% Max Hp'},
             { name : 'Dragon', img: [], effective: '#343a40', effectIndex: [3], index: 0, effect: '(3) 라운드가 시작 될 때 모든 아군 용이 마나 100을 가지고 시작'},
             { name : 'Elementals', img: [], effective: '#343a40', effectIndex: [2, 4], index: 0, effect: '모든 아군 원소 (2), 전체 (4) 를 공격하는 근접 적은 30% 확률로 돌이 됨'},
@@ -74,8 +115,8 @@ export const store = new Vuex.Store({
         getSynergys(state) {
             return state.synergys
         },
-        getSynergysLength(state) {
-            return state.initSynergyLength
+        getSynergysRef(state) {
+            return Object.keys(state.synergysRef).sort((a, b) => { return state.synergysRef[b].ref - state.synergysRef[a].ref})
         }
     },
     mutations: {
@@ -122,23 +163,7 @@ export const store = new Vuex.Store({
                         // 처음 들어온다.
                         specImg.status = 'USED'
                         spec.index++;
-                        if(spec.effectIndex.length === 3) {
-                            if(spec.index < spec.effectIndex[0]) spec.effective = '#343a40'
-                            if(spec.index >= spec.effectIndex[0]) spec.effective = '#91a7ff';
-                            if(spec.index >= spec.effectIndex[1]) spec.effective = '#63e6be';
-                            if(spec.index >= spec.effectIndex[2]) spec.effective = '#fd7e14'
-                        } else if(spec.effectIndex.length === 2) {
-                            if(spec.index < spec.effectIndex[0]) spec.effective = '#343a40'
-                            if(spec.index >= spec.effectIndex[0]) spec.effective = '#91a7ff';
-                            if(spec.index >= spec.effectIndex[1]) spec.effective = '#fd7e14';
-                        } else if(spec.effectIndex.length === 1) {
-                            if(spec.index < spec.effectIndex[0]) spec.effective = '#343a40'
-                            if(spec.index >= spec.effectIndex[0]) spec.effective = '#fd7e14';
-                        } 
-
-                        if(spec.effective !== '#343a40') {
-                            state.synergys[spec.name]++
-                        }
+                        changeEffective(spec)
                     }
 
                 })
@@ -152,23 +177,7 @@ export const store = new Vuex.Store({
                     // 처음 올라왔다.
                     specImg.status = 'USED'
                     spec.index++;
-                    if(spec.effectIndex.length === 3) {
-                        if(spec.index < spec.effectIndex[0]) spec.effective = '#343a40'
-                        if(spec.index >= spec.effectIndex[0]) spec.effective = '#91a7ff';
-                        if(spec.index >= spec.effectIndex[1]) spec.effective = '#63e6be';
-                        if(spec.index >= spec.effectIndex[2]) spec.effective = '#fd7e14'
-                    } else if(spec.effectIndex.length === 2) {
-                        if(spec.index < spec.effectIndex[0]) spec.effective = '#343a40'
-                        if(spec.index >= spec.effectIndex[0]) spec.effective = '#91a7ff';
-                        if(spec.index >= spec.effectIndex[1]) spec.effective = '#fd7e14';
-                    } else if(spec.effectIndex.length === 1) {
-                        if(spec.index < spec.effectIndex[0]) spec.effective = '#343a40'
-                        if(spec.index >= spec.effectIndex[0]) spec.effective = '#fd7e14';
-                    } 
-
-                    if(spec.effective !== '#343a40') {
-                        state.synergys[spec.name]++
-                    }
+                    changeEffective(spec)
                 }
             }
 
@@ -180,23 +189,8 @@ export const store = new Vuex.Store({
             } else {
                 clsImg.status = 'USED'
                 cls.index++;
-                if(cls.effectIndex.length === 3) {
-                    if(cls.index < cls.effectIndex[0]) cls.effective = '#343a40'
-                    if(cls.index >= cls.effectIndex[0]) cls.effective = '#91a7ff';
-                    if(cls.index >= cls.effectIndex[1]) cls.effective = '#63e6be';
-                    if(cls.index >= cls.effectIndex[2]) cls.effective = '#fd7e14'
-                } else if(cls.effectIndex.length === 2) {
-                    if(cls.index < cls.effectIndex[0]) cls.effective = '#343a40'
-                    if(cls.index >= cls.effectIndex[0]) cls.effective = '#91a7ff';
-                    if(cls.index >= cls.effectIndex[1]) cls.effective = '#fd7e14';
-                } else if(cls.effectIndex.length === 1) {
-                    if(cls.index < cls.effectIndex[0]) cls.effective = '#343a40'
-                    if(cls.index >= cls.effectIndex[0]) cls.effective = '#fd7e14';
-                } 
+                changeEffective(cls)
 
-                if(cls.effective !== '#343a40') {
-                    state.synergys[cls.name]++
-                }
             }
 
         },
@@ -242,19 +236,7 @@ export const store = new Vuex.Store({
                             specImg.status = 'NONE'
                         }
                         spec.index--;
-                        if(spec.effectIndex.length === 3) {
-                            if(spec.index < spec.effectIndex[0]) spec.effective = '#343a40'
-                            if(spec.index >= spec.effectIndex[0]) spec.effective = '#91a7ff';
-                            if(spec.index >= spec.effectIndex[1]) spec.effective = '#63e6be';
-                            if(spec.index >= spec.effectIndex[2]) spec.effective = '#fd7e14'
-                        } else if(spec.effectIndex.length === 2) {
-                            if(spec.index < spec.effectIndex[0]) spec.effective = '#343a40'
-                            if(spec.index >= spec.effectIndex[0]) spec.effective = '#91a7ff';
-                            if(spec.index >= spec.effectIndex[1]) spec.effective = '#fd7e14';
-                        } else if(spec.effectIndex.length === 1) {
-                            if(spec.index < spec.effectIndex[0]) spec.effective = '#343a40'
-                            if(spec.index >= spec.effectIndex[0]) spec.effective = '#fd7e14';
-                        } 
+                        changeEffective(spec)
                     }
 
                 })
@@ -272,19 +254,7 @@ export const store = new Vuex.Store({
                         specImg.status = 'NONE'
                     }
                     spec.index--;
-                    if(spec.effectIndex.length === 3) {
-                        if(spec.index < spec.effectIndex[0]) spec.effective = '#343a40'
-                        if(spec.index >= spec.effectIndex[0]) spec.effective = '#91a7ff';
-                        if(spec.index >= spec.effectIndex[1]) spec.effective = '#63e6be';
-                        if(spec.index >= spec.effectIndex[2]) spec.effective = '#fd7e14'
-                    } else if(spec.effectIndex.length === 2) {
-                        if(spec.index < spec.effectIndex[0]) spec.effective = '#343a40'
-                        if(spec.index >= spec.effectIndex[0]) spec.effective = '#91a7ff';
-                        if(spec.index >= spec.effectIndex[1]) spec.effective = '#fd7e14';
-                    } else if(spec.effectIndex.length === 1) {
-                        if(spec.index < spec.effectIndex[0]) spec.effective = '#343a40'
-                        if(spec.index >= spec.effectIndex[0]) spec.effective = '#fd7e14';
-                    } 
+                    changeEffective(spec)
                 }
             }
 
@@ -300,19 +270,7 @@ export const store = new Vuex.Store({
                     clsImg.status = 'NONE'
                 }
                 cls.index--;
-                if(cls.effectIndex.length === 3) {
-                    if(cls.index < cls.effectIndex[0]) cls.effective = '#343a40'
-                    if(cls.index >= cls.effectIndex[0]) cls.effective = '#91a7ff';
-                    if(cls.index >= cls.effectIndex[1]) cls.effective = '#63e6be';
-                    if(cls.index >= cls.effectIndex[2]) cls.effective = '#fd7e14'
-                } else if(cls.effectIndex.length === 2) {
-                    if(cls.index < cls.effectIndex[0]) cls.effective = '#343a40'
-                    if(cls.index >= cls.effectIndex[0]) cls.effective = '#91a7ff';
-                    if(cls.index >= cls.effectIndex[1]) cls.effective = '#fd7e14';
-                } else if(cls.effectIndex.length === 1) {
-                    if(cls.index < cls.effectIndex[0]) cls.effective = '#343a40'
-                    if(cls.index >= cls.effectIndex[0]) cls.effective = '#fd7e14';
-                } 
+                changeEffective(cls)
             }
             // status, index, effect 다 변경.
         },
@@ -362,9 +320,6 @@ export const store = new Vuex.Store({
         },
         GET_SYNERGYS(state, ref) {
             state.synergys = ref;
-            Object.keys(ref).forEach(ele => {
-                state.initSynergyLength += Number(ref[ele])
-            })
         },
         SET_IMAGE(state, obj) {
             let selectUnit = state.units.find(ele => ele.name === obj.name);
@@ -374,18 +329,25 @@ export const store = new Vuex.Store({
     actions: {
         UPDATE_FIREBASE({state}) {
             let tempData;
-            const unitDoc = db.collection('units').doc('66POe7sqFqFRX9Txv7GD')
+            const doc = (new Date()).getFullYear() + '' + ((new Date()).getMonth() + 1) + '' +  ~~((new Date()).getDate() / 7 + 1)
+            const unitDoc = db.collection('units').doc(doc)
             unitDoc.get().then(doc => {
-                if(doc.exists) {
-                    tempData = doc.data();
-                }
+                tempData = doc.data();
             })
             .then(() => {
-                state.units.forEach(unit => {
-                    if(unit.reference !== 0) {
-                        tempData[unit.name].reference += unit.reference
-                    }
-                })
+                if(tempData === undefined) {
+                    tempData = {}
+                    state.units.forEach(unit => {
+                        tempData[unit.name] = { reference: unit.reference}
+                    })
+                    db.collection('units').doc(doc).set(tempData)
+                } else {
+                    state.units.forEach(unit => {
+                        if(unit.reference !== 0) {
+                            tempData[unit.name].reference += unit.reference
+                        }
+                    })
+                }
             })
             .then(() => {
                 unitDoc.update({
@@ -399,29 +361,81 @@ export const store = new Vuex.Store({
                 commit('GET_REFERENCE', doc.data());
             })
         },
-        GET_SYNERGYS({commit}) {
-            const syngDoc = db.collection('synergys').doc('YT9bd0GLKb7vd9JXGfUf')
+        GET_SYNERGYS({state, commit}, doc) {
+            const syngDoc = db.collection('synergys').doc(doc)
+            let syn;
             syngDoc.get().then(doc => {
-                commit('GET_SYNERGYS', doc.data());
+                syn = doc.data();
+                commit('GET_SYNERGYS', syn)
+            })
+            .then(() => {
+                for(let i=0; i<syn.lastIndex; i++){
+                    Object.keys(syn[i]).forEach(ele => {
+                        state.synergysRef.forEach(temp => {
+                            if(temp.name === ele) {
+                                temp.ref++;
+                                syn[i][ele].forEach(unit => {
+                                    if(temp.units[unit] === undefined) {
+                                        temp.units[unit] = 1
+                                    } else {
+                                        temp.units[unit]++;
+                                    }
+                                })
+                            }
+                        })
+                    })
+                }
+                console.log(state.synergysRef)
             })
         },
-        UPDATE_SYNERGYS({state}, obj) {
-            const syngDoc = db.collection('synergys').doc('YT9bd0GLKb7vd9JXGfUf')
+        UPDATE_SYNERGYS({state}) {
+            let effectSyn = {};
+            
+            state.classes.forEach(ele => {
+                let units = [];
+                if (ele.effective !== '#343a40') {
+                    ele.img.forEach(unit => {
+                        if(unit.status === 'USED') {
+                            units = [ ...units, unit.name ]
+                        }
+                    })
+                    effectSyn[ele.name] = units
+                }
+            })
+            state.specs.forEach(ele => {
+                let units = [];
+                if (ele.effective !== '#343a40') {
+                    ele.img.forEach(unit => {
+                        if(unit.status === 'USED') {
+                            units = [ ...units, unit.name ]
+                        }
+                    })
+                    effectSyn[ele.name] = units
+                }
+            })
+
+            const doc = (new Date()).getFullYear() + '' + ((new Date()).getMonth() + 1) + '' +  ~~((new Date()).getDate() / 7 + 1)
+            const syngDoc = db.collection('synergys').doc(doc)
             let tempData;
             syngDoc.get().then(doc => {
                 tempData = doc.data();
             })
             .then(() => {
-                Object.keys(obj.synergys).forEach(ele => {
-                    tempData[ele] += obj.synergys[ele]
-                })
-                state.initSynergyLength = obj.length
+                if(tempData === undefined) {
+                    tempData = { lastIndex : 0 }
+                    effectSyn.id = tempData.lastIndex
+                    tempData[tempData.lastIndex] = effectSyn
+                    db.collection('synergys').doc(doc).set(tempData);
+                } else {
+                    effectSyn.id = ++tempData.lastIndex
+                    tempData[effectSyn.id] = effectSyn
+                    syngDoc.update({
+                        ...tempData
+                    })
+                }
+
             })
-            .then(() => {
-                syngDoc.update({
-                    ...tempData
-                })
-            })
+            
         },
         UPLOAD_IMAGE({state}) {
             let tempData;
