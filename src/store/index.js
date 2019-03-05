@@ -38,30 +38,30 @@ export const store = new Vuex.Store({
             {cost: '5$', units: []}
         ],
         synergysRef: [
-            { units: {},name : 'Assassin', ref: 0 },
-            { units: {},name : 'Demon Hunter', ref: 0 },
-            { units: {},name : 'Druid', ref: 0 },
-            { units: {},name : 'Hunter', ref: 0 },
-            { units: {},name : 'Knight', ref: 0 },
-            { units: {},name : 'Mage', ref: 0 },
-            { units: {},name : 'Mech', ref: 0 },
-            { units: {},name : 'Shaman', ref: 0 },
-            { units: {},name : 'Warlock', ref: 0 },
-            { units: {},name : 'Warrior', ref: 0 },
-            { units: {},name : 'Beast', ref: 0 },
-            { units: {},name : 'Demon', ref: 0 },
-            { units: {},name : 'Dwarf', ref: 0 },
-            { units: {},name : 'Ogre', ref: 0 },
-            { units: {},name : 'Dragon', ref: 0 },
-            { units: {},name : 'Element', ref: 0 },
-            { units: {},name : 'Elf', ref: 0 },
-            { units: {},name : 'Goblin', ref: 0 },
-            { units: {},name : 'Human', ref: 0 },
-            { units: {},name : 'Naga', ref: 0 },
-            { units: {},name : 'Orc', ref: 0 },
-            { units: {},name : 'Troll', ref: 0 },
-            { units: {},name : 'Undead', ref: 0 },
-            { units: {},name : 'Satyr', ref: 0 },
+            { with: {}, units: {},name : 'Assassin', ref: 0 },
+            { with: {}, units: {},name : 'Demon Hunter', ref: 0 },
+            { with: {}, units: {},name : 'Druid', ref: 0 },
+            { with: {}, units: {},name : 'Hunter', ref: 0 },
+            { with: {}, units: {},name : 'Knight', ref: 0 },
+            { with: {}, units: {},name : 'Mage', ref: 0 },
+            { with: {}, units: {},name : 'Mech', ref: 0 },
+            { with: {}, units: {},name : 'Shaman', ref: 0 },
+            { with: {}, units: {},name : 'Warlock', ref: 0 },
+            { with: {}, units: {},name : 'Warrior', ref: 0 },
+            { with: {}, units: {},name : 'Beast', ref: 0 },
+            { with: {}, units: {},name : 'Demon', ref: 0 },
+            { with: {}, units: {},name : 'Dwarf', ref: 0 },
+            { with: {}, units: {},name : 'Ogre', ref: 0 },
+            { with: {}, units: {},name : 'Dragon', ref: 0 },
+            { with: {}, units: {},name : 'Element', ref: 0 },
+            { with: {}, units: {},name : 'Elf', ref: 0 },
+            { with: {}, units: {},name : 'Goblin', ref: 0 },
+            { with: {}, units: {},name : 'Human', ref: 0 },
+            { with: {}, units: {},name : 'Naga', ref: 0 },
+            { with: {}, units: {},name : 'Orc', ref: 0 },
+            { with: {}, units: {},name : 'Troll', ref: 0 },
+            { with: {}, units: {},name : 'Undead', ref: 0 },
+            { with: {}, units: {},name : 'Satyr', ref: 0 },
         ],
         synergys: {},
         classes: [
@@ -116,7 +116,47 @@ export const store = new Vuex.Store({
             return state.synergys
         },
         getSynergysRef(state) {
-            return Object.keys(state.synergysRef).sort((a, b) => { return state.synergysRef[b].ref - state.synergysRef[a].ref})
+            let sort = Object.keys(state.synergysRef).sort((a, b) => { return state.synergysRef[b].ref - state.synergysRef[a].ref})
+            let list = [];
+            let flag = false;
+            let tempList = []
+            for(let i=0; i<7; i++) {
+                let name = state.synergysRef[sort[i]].name
+                if(name !== 'Demon' && name !== 'Ogre' ) {
+                    list = [ ...list, state.synergysRef[sort[i]]]
+                }
+            }
+            if(list.length >= 6) {
+                return null;
+            }
+            list.forEach(item => {
+                
+                Object.keys(state.synergys).forEach(ele => {
+                    tempList = []
+                    flag = false
+                    Object.keys(state.synergys[ele]).forEach((tmp, i) => {
+                        tempList = [ ...tempList, tmp];
+                        if(tmp === item.name) {
+                            flag = true;
+                        }
+                        if( i == Object.keys(state.synergys[ele]).length - 1 && flag) {
+                            tempList.forEach(el => {
+                                if(el !== 'id' && el !== item.name && el !== 'Demon' && el !== 'Ogre') {
+                                    if(item.with[el] === undefined ) {
+                                        let tempObj = {};
+                                        tempObj[el] = 1;
+                                        item.with = { ...item.with, ...tempObj}
+                                    } else {
+                                        item.with[el]++
+                                    }
+                                }
+                            })
+                        }
+                    })
+                })
+
+            })
+            return list;
         }
     },
     mutations: {
@@ -385,7 +425,6 @@ export const store = new Vuex.Store({
                         })
                     })
                 }
-                console.log(state.synergysRef)
             })
         },
         UPDATE_SYNERGYS({state}) {
